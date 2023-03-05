@@ -1,0 +1,55 @@
+{
+    "_id": "1412193949943402498",
+    "_rev": "2-3195441f0b6045a705c7af4de14d589b",
+    "data": {
+        "author_id": "1400239891590520835",
+        "conversation_id": "1412193071790497795",
+        "created_at": "2021-07-05T23:37:29.000Z",
+        "entities": {
+            "mentions": [
+                {
+                    "start": 0,
+                    "end": 11,
+                    "username": "australian",
+                    "id": "9609632"
+                }
+            ]
+        },
+        "geo": {
+            "place_id": "01c51b5c26ae00b0"
+        },
+        "lang": "en",
+        "public_metrics": {
+            "retweet_count": 0,
+            "reply_count": 0,
+            "like_count": 0,
+            "quote_count": 0
+        },
+        "text": "@australian I do not understand these players. Not only are they putting the game and other players at risk, the potential for people like myself who working in broadcasting could once again lose work.\n\nSelfish",
+        "sentiment": -0.08571428571428572
+    },
+    "includes": {
+        "places": [
+            {
+                "full_name": "Picton, New South Wales",
+                "geo": {
+                    "type": "Feature",
+                    "bbox": [
+                        150.595720928,
+                        -34.1965930175,
+                        150.634763104,
+                        -34.1559662405
+                    ],
+                    "properties": {}
+                },
+                "id": "01c51b5c26ae00b0"
+            }
+        ]
+    },
+    "matching_rules": [
+        {
+            "id": 1412189062442586000,
+            "tag": "Australia-based users or Australia-located tweets, but no re-tweets"
+        }
+    ]
+}

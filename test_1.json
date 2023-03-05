@@ -1,0 +1,54 @@
+{
+    "_id": "1412198558351036432",
+    "_rev": "1-9e25cc43af60d7688f3799e91e0d3375",
+    "data": {
+        "author_id": "233782487",
+        "conversation_id": "1411951885767135235",
+        "created_at": "2021-07-05T23:55:48.000Z",
+        "entities": {
+            "mentions": [
+                {
+                    "start": 0,
+                    "end": 9,
+                    "username": "yioults1",
+                    "id": "2751947681"
+                }
+            ]
+        },
+        "geo": {
+            "place_id": "01864a8a64df9dc4"
+        },
+        "lang": "el",
+        "public_metrics": {
+            "retweet_count": 0,
+            "reply_count": 0,
+            "like_count": 0,
+            "quote_count": 0
+        },
+        "text": "@yioults1 Γιατί?Νταβατζηδες και εκβιαστές είναι αυτό είναι το Μητσοτακικό γυφταριό!"
+    },
+    "includes": {
+        "places": [
+            {
+                "full_name": "Melbourne, Victoria",
+                "geo": {
+                    "type": "Feature",
+                    "bbox": [
+                        144.593741856,
+                        -38.433859306,
+                        145.512528832,
+                        -37.5112737225
+                    ],
+                    "properties": {}
+                },
+                "id": "01864a8a64df9dc4"
+            }
+        ]
+    },
+    "matching_rules": [
+        {
+            "id": 1412189062442586000,
+            "tag": "Australia-based users or Australia-located tweets, but no re-tweets"
+        }
+    ]
+}
