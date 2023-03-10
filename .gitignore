@@ -1,5 +1,19 @@
 # Created by https://www.toptal.com/developers/gitignore/api/python,pycharm,visualstudiocode
-# Edit at https://www.toptal.com/developers/gitignore?templates=python,pycharm,visualstudiocode
+# Edit at https://www.toptal.com/developers/gitignore?templates=python,pycharm,visualstudiocode,jupyternotebooks
+
+### JupyterNotebooks ###
+# gitignore template for Jupyter Notebooks
+# website: http://jupyter.org/
+
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+
+# IPython
+profile_default/
+ipython_config.py
+
+# Remove previous ipynb_checkpoints
+#   git rm -r .ipynb_checkpoints/
 
 ### PyCharm ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio, WebStorm and Rider
