@@ -53,37 +53,36 @@ def get_code_by_places(sal):
     return code_by_place_dict
 
 
-def top_places(twitter, place_code_lst):
-    place_code_dict = {}
+# def top_places(twitter, place_code_lst):
+#     place_code_dict = {}
 
-    for j in range(len(twitter)):
-        includes_data = twitter[j]['includes'].get("places")[0]
-        place_name = includes_data.get("full_name").lower()
+#     for j in range(len(twitter)):
+#         includes_data = twitter[j]['includes'].get("places")[0]
+#         place_name = includes_data.get("full_name").lower()
 
-        index = get_index(place_name)
-        if index < 0:
-            continue
+#         index = get_index(place_name)
+#         if index < 0:
+#             continue
 
-        for k in range(len(place_code_lst[index])):
-            for (key, value) in place_code_lst[index][k].items():
-                temp_name = key
-                temp_code = value
+#         for k in range(len(place_code_lst[index])):
+#             for (key, value) in place_code_lst[index][k].items():
+#                 temp_name = key
+#                 temp_code = value
 
-            if place_name.find(temp_name) != -1:
-                if temp_code in place_code_dict.keys():
-                    temp = place_code_dict.get(temp_code) + 1
-                    place_code_dict.update({temp_code: temp})
-                else:
-                    place_code_dict.update({temp_code: 1})
+#             if place_name.find(temp_name) != -1:
+#                 if temp_code in place_code_dict.keys():
+#                     temp = place_code_dict.get(temp_code) + 1
+#                     place_code_dict.update({temp_code: temp})
+#                 else:
+#                     place_code_dict.update({temp_code: 1})
 
-    # print(place_code_dict)
-    name_dict_sorted = sorted(place_code_dict.items(), key=lambda x: x[1], reverse=True)
+#     # print(place_code_dict)
+#     name_dict_sorted = sorted(place_code_dict.items(), key=lambda x: x[1], reverse=True)
 
-    for l in range(7):
-        print(name_dict_sorted[l])
+#     for l in range(7):
+#         print(name_dict_sorted[l])
 
-
-def top_id_places(twitter, place_code_lst):
+def top_id_places(twitter, code_by_places):
     id_places_dict = {}
 
     for j in range(len(twitter)):
