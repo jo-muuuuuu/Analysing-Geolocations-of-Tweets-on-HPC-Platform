@@ -146,29 +146,18 @@ def update_dict(id_places_dict, cur_author_id, code):
 def top_id_places(twitter, code_by_places):
     id_places_dict = {}
 
-    for j in range(len(twitter)):
-        cur_author_id = twitter[j]['data'].get("author_id")
+    for data in twitter:
+        cur_author_id = data['data'].get("author_id")
 
         if cur_author_id not in id_places_dict.keys():
             id_places_dict.update({cur_author_id: {}})
 
-        includes_data = twitter[j]['includes'].get("places")[0]
-        place_name = includes_data.get("full_name").lower()
+        t_place_name = data['includes'].get("places")[0].get("full_name").lower()
 
-        index = get_index(place_name)
-
-        for k in range(len(place_code_lst[index])):
-            for (key, value) in place_code_lst[index][k].items():
-                temp_name = key
-                temp_code = value
-
-            if place_name.find(temp_name) != -1:
-                cur = id_places_dict.get(cur_author_id)
-                if temp_code in cur.keys():
-                    temp = cur.get(temp_code) + 1
-                    cur.update({temp_code: temp})
-                else:
-                    cur.update({temp_code: 1})
+        code = get_gcc_code(t_place_name, code_by_places)
+        if code:
+            update_dict(id_places_dict, cur_author_id, code)
+            
 
     id_places_sorted = sorted(id_places_dict.items(), key=lambda x: len(x[1]), reverse=True)
 
@@ -205,4 +194,4 @@ if __name__ == '__main__':
     # print("\n-------------------------------------------\n")
 
     # IDs with the most places
-    top_id_places(twitter, place_code_lst)
+    top_id_places(twitter, code_by_places)
