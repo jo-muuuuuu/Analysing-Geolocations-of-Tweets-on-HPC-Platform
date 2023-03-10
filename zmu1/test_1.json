@@ -1,0 +1,387 @@
+[
+  {
+    "_id": "1412195202505207808",
+    "_rev": "2-4204f0887e1c1751bfa7ddd330b6158e",
+    "data": {
+      "author_id": "1624641817",
+      "conversation_id": "1412181878933577728",
+      "created_at": "2021-07-05T23:42:28.000Z",
+      "entities": {
+        "annotations": [
+          {
+            "start": 97,
+            "end": 102,
+            "probability": 0.8447,
+            "type": "Place",
+            "normalized_text": "Sydney"
+          },
+          {
+            "start": 154,
+            "end": 162,
+            "probability": 0.9646,
+            "type": "Place",
+            "normalized_text": "Melbourne"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 0,
+            "end": 10,
+            "username": "brisman44",
+            "id": "303069195"
+          },
+          {
+            "start": 11,
+            "end": 24,
+            "username": "Sandra_Sully",
+            "id": "142957691"
+          }
+        ]
+      },
+      "geo": {
+        "place_id": "017453ae077eafd3"
+      },
+      "lang": "en",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 0,
+        "like_count": 0,
+        "quote_count": 0
+      },
+      "text": "@brisman44 @Sandra_Sully Gosh I feel for these elderly in the aged care homes 🥲\nYou would think Sydney would of learnt by the mistakes that were made in Melbourne last year.",
+      "sentiment": 0
+    },
+    "includes": {
+      "places": [
+        {
+          "full_name": "Melbourne, Victoria",
+          "geo": {
+            "type": "Feature",
+            "bbox": [
+              153.186551712,
+              -28.2003171475,
+              153.552171232,
+              -27.708126368
+            ],
+            "properties": {}
+          },
+          "id": "017453ae077eafd3"
+        }
+      ]
+    },
+    "matching_rules": [
+      {
+        "id": 1412189062442586000,
+        "tag": "Australia-based users or Australia-located tweets, but no re-tweets"
+      }
+    ]
+  },
+  {
+    "_id": "1412195202505207808",
+    "_rev": "2-4204f0887e1c1751bfa7ddd330b6158e",
+    "data": {
+      "author_id": "1624641818",
+      "conversation_id": "1412181878933577728",
+      "created_at": "2021-07-05T23:42:28.000Z",
+      "entities": {
+        "annotations": [
+          {
+            "start": 97,
+            "end": 102,
+            "probability": 0.8447,
+            "type": "Place",
+            "normalized_text": "Sydney"
+          },
+          {
+            "start": 154,
+            "end": 162,
+            "probability": 0.9646,
+            "type": "Place",
+            "normalized_text": "Melbourne"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 0,
+            "end": 10,
+            "username": "brisman44",
+            "id": "303069195"
+          },
+          {
+            "start": 11,
+            "end": 24,
+            "username": "Sandra_Sully",
+            "id": "142957691"
+          }
+        ]
+      },
+      "geo": {
+        "place_id": "017453ae077eafd3"
+      },
+      "lang": "en",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 0,
+        "like_count": 0,
+        "quote_count": 0
+      },
+      "text": "@brisman44 @Sandra_Sully Gosh I feel for these elderly in the aged care homes 🥲\nYou would think Sydney would of learnt by the mistakes that were made in Melbourne last year.",
+      "sentiment": 0
+    },
+    "includes": {
+      "places": [
+        {
+          "full_name": "Sydney, New South Wales",
+          "geo": {
+            "type": "Feature",
+            "bbox": [
+              153.186551712,
+              -28.2003171475,
+              153.552171232,
+              -27.708126368
+            ],
+            "properties": {}
+          },
+          "id": "017453ae077eafd3"
+        }
+      ]
+    },
+    "matching_rules": [
+      {
+        "id": 1412189062442586000,
+        "tag": "Australia-based users or Australia-located tweets, but no re-tweets"
+      }
+    ]
+  },
+  {
+    "_id": "1412195202505207808",
+    "_rev": "2-4204f0887e1c1751bfa7ddd330b6158e",
+    "data": {
+      "author_id": "1624641819",
+      "conversation_id": "1412181878933577728",
+      "created_at": "2021-07-05T23:42:28.000Z",
+      "entities": {
+        "annotations": [
+          {
+            "start": 97,
+            "end": 102,
+            "probability": 0.8447,
+            "type": "Place",
+            "normalized_text": "Sydney"
+          },
+          {
+            "start": 154,
+            "end": 162,
+            "probability": 0.9646,
+            "type": "Place",
+            "normalized_text": "Melbourne"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 0,
+            "end": 10,
+            "username": "brisman44",
+            "id": "303069195"
+          },
+          {
+            "start": 11,
+            "end": 24,
+            "username": "Sandra_Sully",
+            "id": "142957691"
+          }
+        ]
+      },
+      "geo": {
+        "place_id": "017453ae077eafd3"
+      },
+      "lang": "en",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 0,
+        "like_count": 0,
+        "quote_count": 0
+      },
+      "text": "@brisman44 @Sandra_Sully Gosh I feel for these elderly in the aged care homes 🥲\nYou would think Sydney would of learnt by the mistakes that were made in Melbourne last year.",
+      "sentiment": 0
+    },
+    "includes": {
+      "places": [
+        {
+          "full_name": "Melbourne, Victoria",
+          "geo": {
+            "type": "Feature",
+            "bbox": [
+              153.186551712,
+              -28.2003171475,
+              153.552171232,
+              -27.708126368
+            ],
+            "properties": {}
+          },
+          "id": "017453ae077eafd3"
+        }
+      ]
+    },
+    "matching_rules": [
+      {
+        "id": 1412189062442586000,
+        "tag": "Australia-based users or Australia-located tweets, but no re-tweets"
+      }
+    ]
+  },
+  {
+    "_id": "1412195202505207808",
+    "_rev": "2-4204f0887e1c1751bfa7ddd330b6158e",
+    "data": {
+      "author_id": "1624641818",
+      "conversation_id": "1412181878933577728",
+      "created_at": "2021-07-05T23:42:28.000Z",
+      "entities": {
+        "annotations": [
+          {
+            "start": 97,
+            "end": 102,
+            "probability": 0.8447,
+            "type": "Place",
+            "normalized_text": "Sydney"
+          },
+          {
+            "start": 154,
+            "end": 162,
+            "probability": 0.9646,
+            "type": "Place",
+            "normalized_text": "Melbourne"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 0,
+            "end": 10,
+            "username": "brisman44",
+            "id": "303069195"
+          },
+          {
+            "start": 11,
+            "end": 24,
+            "username": "Sandra_Sully",
+            "id": "142957691"
+          }
+        ]
+      },
+      "geo": {
+        "place_id": "017453ae077eafd3"
+      },
+      "lang": "en",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 0,
+        "like_count": 0,
+        "quote_count": 0
+      },
+      "text": "@brisman44 @Sandra_Sully Gosh I feel for these elderly in the aged care homes 🥲\nYou would think Sydney would of learnt by the mistakes that were made in Melbourne last year.",
+      "sentiment": 0
+    },
+    "includes": {
+      "places": [
+        {
+          "full_name": "Melbourne, Victoria",
+          "geo": {
+            "type": "Feature",
+            "bbox": [
+              153.186551712,
+              -28.2003171475,
+              153.552171232,
+              -27.708126368
+            ],
+            "properties": {}
+          },
+          "id": "017453ae077eafd3"
+        }
+      ]
+    },
+    "matching_rules": [
+      {
+        "id": 1412189062442586000,
+        "tag": "Australia-based users or Australia-located tweets, but no re-tweets"
+      }
+    ]
+  },
+  {
+    "_id": "1412195202505207808",
+    "_rev": "2-4204f0887e1c1751bfa7ddd330b6158e",
+    "data": {
+      "author_id": "1624641818",
+      "conversation_id": "1412181878933577728",
+      "created_at": "2021-07-05T23:42:28.000Z",
+      "entities": {
+        "annotations": [
+          {
+            "start": 97,
+            "end": 102,
+            "probability": 0.8447,
+            "type": "Place",
+            "normalized_text": "Sydney"
+          },
+          {
+            "start": 154,
+            "end": 162,
+            "probability": 0.9646,
+            "type": "Place",
+            "normalized_text": "Melbourne"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 0,
+            "end": 10,
+            "username": "brisman44",
+            "id": "303069195"
+          },
+          {
+            "start": 11,
+            "end": 24,
+            "username": "Sandra_Sully",
+            "id": "142957691"
+          }
+        ]
+      },
+      "geo": {
+        "place_id": "017453ae077eafd3"
+      },
+      "lang": "en",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 0,
+        "like_count": 0,
+        "quote_count": 0
+      },
+      "text": "@brisman44 @Sandra_Sully Gosh I feel for these elderly in the aged care homes 🥲\nYou would think Sydney would of learnt by the mistakes that were made in Melbourne last year.",
+      "sentiment": 0
+    },
+    "includes": {
+      "places": [
+        {
+          "full_name": "Melbourne, Victoria",
+          "geo": {
+            "type": "Feature",
+            "bbox": [
+              153.186551712,
+              -28.2003171475,
+              153.552171232,
+              -27.708126368
+            ],
+            "properties": {}
+          },
+          "id": "017453ae077eafd3"
+        }
+      ]
+    },
+    "matching_rules": [
+      {
+        "id": 1412189062442586000,
+        "tag": "Australia-based users or Australia-located tweets, but no re-tweets"
+      }
+    ]
+  }
+]
