@@ -82,6 +82,67 @@ def get_code_by_places(sal):
 #     for l in range(7):
 #         print(name_dict_sorted[l])
 
+
+def get_gcc_code(t_place, place_dict:dict):
+    # if the location is in two parts
+    if t_place.find(",") != -1:
+        t_place_first, t_place_second = t_place.split(",", 1)
+        # All locations that end with Australia are ambiguous. e.g. Victoria, Australia;  South Australia, Australia
+        if t_place_second == "australia":
+            return None
+        if t_place_first in GCC_DICT.keys():
+            return GCC_DICT[t_place_first]
+        else:
+            return check_against_places(t_place_first, place_dict, t_place_second)
+    # if the location is a single word
+    else:
+        # If it's Australia or States, return None, as they are ambiguous
+        if t_place == "australia" or t_place in STATE_ABB_DICT.keys():
+                return None
+        return check_against_places(t_place, place_dict)
+    
+def check_against_places(place_first_part, place_dict, place_second_part=None):
+    # Get all places that contains the current location - O(n)
+    places_matched = [place for place in place_dict.keys() if place_first_part in place ]
+    if len(places_matched) == 1:
+        code = place_dict[places_matched[0]]
+        if is_gcc(code):
+            return code
+    # if there are multiple results found
+    elif len(places_matched) > 1:
+        # if there is an exact match
+        if place_first_part in places_matched:
+            return place_dict[place_first_part],
+        # get all returned gcc in a set
+        gcc_variances = set(place_dict[place] for place in places_matched)
+        # if we only have one kind of gcc code and it's one of the gcc
+        if len(gcc_variances) == 1 and is_gcc(list(gcc_variances)[0]):
+            return list(gcc_variances)[0]
+        elif len(gcc_variances) > 1:
+            state_abb = STATE_ABB_DICT.get(place_second_part.strip()) 
+            if state_abb:
+                refined_matched_places = [place for place in places_matched if re.search(f"{place_first_part}.*\({state_abb}\).*", place)]
+                if len(refined_matched_places) == 0:
+                    return None,
+                elif len(refined_matched_places) > 1 and len(set(place_dict[place] for place in refined_matched_places) > 1):
+                    return None
+                elif is_gcc(place_dict[refined_matched_places[0]]):
+                    return place_dict[refined_matched_places[0]]
+    return None
+
+def is_gcc(code):
+    if re.search("\dg\w{3}|8acte", code):
+        return True
+    return False
+
+def update_dict(id_places_dict, cur_author_id, code):
+    cur = id_places_dict.get(cur_author_id)
+    if code in cur.keys():
+        temp = cur.get(code) + 1
+        cur.update({code: temp})
+    else:
+        cur.update({code: 1})
+
 def top_id_places(twitter, code_by_places):
     id_places_dict = {}
 
