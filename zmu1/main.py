@@ -133,9 +133,9 @@ def top_id_places(twitter, place_code_lst):
 
 
 if __name__ == '__main__':
-    twitter_file = open('twitter-data-small.json')
-    # twitter_file = open('test_1.json')
-    twitter = json.load(twitter_file)
+    # with open(os.path.dirname(__file__) + '/../test_3.json', 'r', encoding='UTF-8') as twitter_file:
+    with open(os.path.dirname(__file__) + '/twitter-data-small.json', 'r', encoding='UTF-8') as twitter_file:
+        twitter = json.load(twitter_file)
 
     sal_file = open('sal.json')
     sal = json.load(sal_file)
