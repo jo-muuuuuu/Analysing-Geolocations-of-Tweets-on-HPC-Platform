@@ -35,44 +35,22 @@ def top_ten_id(twitter):
         print(id_dict_sorted[j])
 
 
-def get_place_code(sal):
-    place_code_lst = [[] for i in range(7)]
+def get_code_by_places(sal):
+    code_by_place_dict = {}
 
-    for (key, value) in sal.items():
+    for (place, value) in sal.items():
         code = value.get("gcc")
 
-        if code[1] == 'g':
-            index = int(value.get("ste"))
-            place_code_lst[index - 1].append({key: code})
+        # commented out because considering this scenario:
+        # picton A -> 1gsyd, picton B -> 1rnsw
+        # if the twitter location only says 'picton' and we filter out the rural gcc, i.e. 1rnsw, we won't be able to know there is another choice that may cause ambiguity.
+        # This hence lead to overconfidence in the logic and results in 1gsyd, where we in fact can't really say for sure
+        # gcc_found = re.search("\dg\w{3}|8acte", code)
 
-    # for i in range(7):
-    #     print(place_code_lst[i])
-    #     print("\n")
+        # if gcc_found:
+        code_by_place_dict[place] = code
 
-    return place_code_lst
-
-
-def get_index(place_name):
-    if "sydney" in place_name or "new south wales" in place_name:
-        index = 0
-    elif "melbourne" in place_name or "victoria" in place_name:
-        index = 1
-    elif "brisbane" in place_name or "queensland" in place_name:
-        index = 2
-    elif "adelaide" in place_name or "south australia" in place_name:
-        index = 3
-    elif "perth" in place_name or "west australia" in place_name:
-        index = 4
-    elif "hobart" in place_name or "tasmania" in place_name:
-        index = 5
-    elif "darwin" in place_name or "northern territory" in place_name:
-        index = 6
-    else:
-        index = -1
-
-    # print(place_name)
-    # print(index)
-    return index
+    return code_by_place_dict
 
 
 def top_places(twitter, place_code_lst):
@@ -155,7 +133,7 @@ if __name__ == '__main__':
     sal_file = open('sal.json')
     sal = json.load(sal_file)
 
-    place_code_lst = get_place_code(sal)
+    code_by_places = get_code_by_places(sal)
     # print(place_code_lst)
 
     # Top 10 Author IDs
