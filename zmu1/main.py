@@ -1,5 +1,20 @@
 import json
+import os.path
+import re
+import numpy as np
+from collections import defaultdict
 
+STATE_ABB_DICT = {
+    "new south wales": "nsw",
+    "victoria": "vic",
+    "queensland": "qld",
+    "south australia": "sau",
+    "western australia": "wau",
+    "tasmania": "tas",
+    "northern territory":"nte"
+}
+
+GCC_DICT = { "sydney":"1gsyd", "melbourne": "2gmel","brisbane":"3gbri", "adelaide":"4gade", "perth":"5gper", "hobart":"6ghob","darwin":"7gdar", "canberra":"8acte"}
 
 def top_ten_id(twitter):
     author_id_dict = {}
