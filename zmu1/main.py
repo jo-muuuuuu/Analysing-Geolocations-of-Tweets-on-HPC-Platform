@@ -2,7 +2,9 @@ import ijson
 import argparse
 import os.path
 import numpy as np
+import pandas as pd
 import util
+from collections import defaultdict
 
 
 def top_ten_id(twitter):
@@ -57,18 +59,20 @@ def top_ten_id(twitter):
 
 
 def update_dict(id_places_dict, cur_author_id, code):
-    cur = id_places_dict.get(cur_author_id)
-    if code in cur.keys():
-        temp = cur.get(code) + 1
-        cur.update({code: temp})
-    else:
-        cur.update({code: 1})
+    cur_list = id_places_dict.get(cur_author_id)
+    index = int(code[:1]) - 1
+    cur_list[index] = cur_list[index] + 1
+    # if code in cur.keys():
+    #     temp = cur.get(code) + 1
+    #     cur.update({code: temp})
+    # else:
+    #     cur.update({code: 1})
 
 def process_data(twitter_data_point, code_by_places, id_places_dict):
     cur_author_id = twitter_data_point['data'].get("author_id")
 
     if cur_author_id not in id_places_dict.keys():
-        id_places_dict.update({cur_author_id: {}})
+        id_places_dict[cur_author_id] = [0] * 8
 
     t_place_name = twitter_data_point['includes'].get("places")[0].get("full_name").lower()
 
@@ -94,10 +98,18 @@ def main(data_path, location_path):
         # if the remainder r, where r = index % comm_size, is equal to the comm_rank, the current process should process it, otherwise, ignore it.
         for index, twitter_data_point in enumerate(twitter):
             process_data(twitter_data_point, code_by_places, id_places_dict)
+        
+        author_list = id_places_dict.keys()
+        author_by_gcc_arr = np.array([a for a in id_places_dict.values()])
+        author_by_gcc_df = pd.DataFrame(author_by_gcc_arr, index=pd.Index(author_list, name="Authors:"), columns=pd.Index(util.GCC_DICT.values(), name='GGC:'))
+        # print(author_by_gcc_df)
 
-        id_places_sorted = sorted(id_places_dict.items(), key=lambda x: len(x[1]), reverse=True)
+        # Return GCC by the number of tweets in descending order
+        print("==== GCCs by the number of tweets in descending order ====")
+        util.get_top_gcc_by_num_of_tweet(author_by_gcc_df)
 
-        print(id_places_sorted)
+        print("==== Authors by the number of tweets in descending order ====")
+        util.get_top_author_by_num_of_tweet(author_by_gcc_df)
 
 
 if __name__ == '__main__':

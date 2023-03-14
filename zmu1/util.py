@@ -83,3 +83,17 @@ def is_gcc(code):
     if re.search("\dg\w{3}|8acte", code):
         return True
     return False
+
+def get_top_gcc_by_num_of_tweet(author_by_gcc_df, n=8):
+    gcc_tweet_sum = author_by_gcc_df.sum()
+    gcc_tweet_sum_sorted = gcc_tweet_sum.sort_values(ascending=False).head(n)
+
+    print(gcc_tweet_sum_sorted)
+    return gcc_tweet_sum_sorted
+
+def get_top_author_by_num_of_tweet(author_by_gcc_df, n=10):
+    author_tweet_sum = author_by_gcc_df.T.sum()
+    author_tweet_sum_sorted = author_tweet_sum.sort_values(ascending=False).head(n)
+
+    print(author_tweet_sum_sorted)
+    return author_tweet_sum_sorted
