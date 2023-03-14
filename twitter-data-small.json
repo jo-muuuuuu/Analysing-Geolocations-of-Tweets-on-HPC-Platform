@@ -54166,5 +54166,69 @@
         "tag": "Australia-based users or Australia-located tweets, but no re-tweets"
       }
     ]
+  },
+  {
+    "_id": "1412197569585848320",
+    "_rev": "2-5eef29f3b507ee9b51f076dae89eb8f7",
+    "data": {
+      "author_id": "1397010827048194048",
+      "conversation_id": "1412197569585848320",
+      "created_at": "2021-07-05T23:51:52.000Z",
+      "entities": {
+        "mentions": [
+          {
+            "start": 54,
+            "end": 65,
+            "username": "Harlotscbr",
+            "id": "1350654205262917632"
+          }
+        ],
+        "urls": [
+          {
+            "start": 66,
+            "end": 89,
+            "url": "https://t.co/BiuqDSmt60",
+            "expanded_url": "https://twitter.com/Crystal4u5/status/1412197569585848320/photo/1",
+            "display_url": "pic.twitter.com/BiuqDSmt60"
+          }
+        ]
+      },
+      "geo": {
+        "place_id": "6a58fa131cd70bfc"
+      },
+      "lang": "en",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 0,
+        "like_count": 0,
+        "quote_count": 0
+      },
+      "text": "It’s 2° outside but hot &amp; steamy inside 😉Cum Play💋@Harlotscbr https://t.co/BiuqDSmt60",
+      "sentiment": 0
+    },
+    "includes": {
+      "places": [
+        {
+          "full_name": "Acacia Gardens",
+          "geo": {
+            "type": "Feature",
+            "bbox": [
+              149.14869012,
+              -35.34250203,
+              149.19271596,
+              -35.302077
+            ],
+            "properties": {}
+          },
+          "id": "6a58fa131cd70bfc"
+        }
+      ]
+    },
+    "matching_rules": [
+      {
+        "id": 1412189062442586000,
+        "tag": "Australia-based users or Australia-located tweets, but no re-tweets"
+      }
+    ]
   }
 ]
