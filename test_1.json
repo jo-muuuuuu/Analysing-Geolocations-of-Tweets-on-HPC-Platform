@@ -1,4 +1,4 @@
-{
+[{
     "_id": "1412198558351036432",
     "_rev": "1-9e25cc43af60d7688f3799e91e0d3375",
     "data": {
@@ -51,4 +51,4 @@
             "tag": "Australia-based users or Australia-located tweets, but no re-tweets"
         }
     ]
-}
+}]
