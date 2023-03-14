@@ -1,8 +1,10 @@
+import ijson
 import json
+import argparse
 import os.path
 import re
 import numpy as np
-from collections import defaultdict
+import util
 
 STATE_ABB_DICT = {
     "new south wales": "nsw",
@@ -35,22 +37,7 @@ def top_ten_id(twitter):
         print(id_dict_sorted[j])
 
 
-def get_code_by_places(sal):
-    code_by_place_dict = {}
 
-    for (place, value) in sal.items():
-        code = value.get("gcc")
-
-        # commented out because considering this scenario:
-        # picton A -> 1gsyd, picton B -> 1rnsw
-        # if the twitter location only says 'picton' and we filter out the rural gcc, i.e. 1rnsw, we won't be able to know there is another choice that may cause ambiguity.
-        # This hence lead to overconfidence in the logic and results in 1gsyd, where we in fact can't really say for sure
-        # gcc_found = re.search("\dg\w{3}|8acte", code)
-
-        # if gcc_found:
-        code_by_place_dict[place] = code
-
-    return code_by_place_dict
 
 
 # def top_places(twitter, place_code_lst):
@@ -143,55 +130,53 @@ def update_dict(id_places_dict, cur_author_id, code):
     else:
         cur.update({code: 1})
 
-def top_id_places(twitter, code_by_places):
-    id_places_dict = {}
+def top_id_places(twitter_data_point, code_by_places, id_places_dict):
+    cur_author_id = twitter_data_point['data'].get("author_id")
 
-    for data in twitter:
-        cur_author_id = data['data'].get("author_id")
+    if cur_author_id not in id_places_dict.keys():
+        id_places_dict.update({cur_author_id: {}})
 
-        if cur_author_id not in id_places_dict.keys():
-            id_places_dict.update({cur_author_id: {}})
+    t_place_name = twitter_data_point['includes'].get("places")[0].get("full_name").lower()
 
-        t_place_name = data['includes'].get("places")[0].get("full_name").lower()
-
-        code = get_gcc_code(t_place_name, code_by_places)
-        if code:
-            update_dict(id_places_dict, cur_author_id, code)
+    code = get_gcc_code(t_place_name, code_by_places)
+    if code:
+        update_dict(id_places_dict, cur_author_id, code)
             
 
-    id_places_sorted = sorted(id_places_dict.items(), key=lambda x: len(x[1]), reverse=True)
 
-    # for l in range(10):
-    #     print(id_places_sorted[l])
+def main(data_path, location_path):
+    # Get gcc code by locations. data looks like: [{"abb": "1gsyd"}, ...]
+    code_by_places = util.process_location_file(location_path)
 
-    print(id_places_sorted)
+    id_places_dict = {}
+    # with open(os.path.dirname(__file__) + '/../test_3.json', 'r', encoding='UTF-8') as twitter_file:
+    with open(os.path.dirname(__file__) + data_path, 'r', encoding='UTF-8') as twitter_file:
+        twitter = ijson.items(twitter_file, 'item')
 
-    # print(id_places_dict)
+        # TODO: implement MPI logic 
+        # We can get the index of the current json data point   - index
+        # we have the rank of the current processor   -  comm_rank
+        # we have the number of processors   -    comm_size
+        # if the remainder r, where r = index % comm_size, is equal to the comm_rank, the current process should process it, otherwise, ignore it.
+        for index, twitter_data_point in enumerate(twitter):
+            top_id_places(twitter_data_point, code_by_places, id_places_dict)
 
-    # No Twitter user tweet in more than 1 place in twitter-data-small.json
-    # for (key, value) in id_places_dict.items():
-    #     if len(value) > 1:
-    #         print("Found")
+        id_places_sorted = sorted(id_places_dict.items(), key=lambda x: len(x[1]), reverse=True)
+
+        print(id_places_sorted)
 
 
 if __name__ == '__main__':
-    # with open(os.path.dirname(__file__) + '/../test_3.json', 'r', encoding='UTF-8') as twitter_file:
-    with open(os.path.dirname(__file__) + '/twitter-data-small.json', 'r', encoding='UTF-8') as twitter_file:
-        twitter = json.load(twitter_file)
+    parser = argparse.ArgumentParser(description='Processing Twitter data focusing on the geolocation attribute')
+    # Pass in the location file path
+    parser.add_argument('--location', type=str, help='File path to the location file. e.g. sal.json')
+    # Pass in the twitter data file path
+    parser.add_argument('--data', type=str, help='File path to the twitter data file')
+    args = parser.parse_args()
 
-    sal_file = open('sal.json')
-    sal = json.load(sal_file)
+    location_path = args.location
+    data_path = args.data
 
-    code_by_places = get_code_by_places(sal)
-    # print(place_code_lst)
+    main(data_path, location_path)
 
-    # Top 10 Author IDs
-    # top_ten_id(twitter)
-    # print("\n-------------------------------------------\n")
-
-    # Places with the most twitters
-    # top_places(twitter, place_code_lst)
-    # print("\n-------------------------------------------\n")
-
-    # IDs with the most places
-    top_id_places(twitter, code_by_places)
+    
