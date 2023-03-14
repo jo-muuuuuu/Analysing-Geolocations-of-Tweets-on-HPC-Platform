@@ -61,7 +61,7 @@ def check_against_places(place_first_part, place_dict, place_second_part=None):
     elif len(places_matched) > 1:
         # if there is an exact match
         if place_first_part in places_matched:
-            return place_dict[place_first_part],
+            return place_dict[place_first_part]
         # get all returned gcc in a set
         gcc_variances = set(place_dict[place] for place in places_matched)
         # if we only have one kind of gcc code and it's one of the gcc
@@ -72,7 +72,7 @@ def check_against_places(place_first_part, place_dict, place_second_part=None):
             if state_abb:
                 refined_matched_places = [place for place in places_matched if re.search(f"{place_first_part}.*\({state_abb}\).*", place)]
                 if len(refined_matched_places) == 0:
-                    return None,
+                    return None
                 elif len(refined_matched_places) > 1 and len(set(place_dict[place] for place in refined_matched_places) > 1):
                     return None
                 elif is_gcc(place_dict[refined_matched_places[0]]):
