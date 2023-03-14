@@ -91,6 +91,7 @@ def main(data_path, location_path):
     with open(os.path.dirname(__file__) + data_path, 'r', encoding='UTF-8') as twitter_file:
         twitter = ijson.items(twitter_file, 'item')
 
+        # MPI PROCESS
         # TODO: implement MPI logic 
         # We can get the index of the current json data point   - index
         # we have the rank of the current processor   -  comm_rank
@@ -104,6 +105,12 @@ def main(data_path, location_path):
         author_by_gcc_df = pd.DataFrame(author_by_gcc_arr, index=pd.Index(author_list, name="Authors:"), columns=pd.Index(util.GCC_DICT.values(), name='GGC:'))
         # print(author_by_gcc_df)
 
+        # MPI MERGE
+        # Get all dataframes and then concate them, e.g.
+        # df_sum_al = pd.concat([df_1, df_2, ...]).groupby("Authors:").sum()
+
+
+        # OUTPUT
         # Return GCC by the number of tweets in descending order
         print("==== GCCs by the number of tweets in descending order ====")
         util.get_top_gcc_by_num_of_tweet(author_by_gcc_df)
