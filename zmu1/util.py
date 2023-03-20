@@ -208,10 +208,14 @@ def get_top_author_by_num_of_gcc(author_by_gcc_df, n=10):
     """
     author_gcc_sum = author_by_gcc_df
 
-    counts = (author_gcc_sum > 0).sum(axis=1)
-    author_gcc_sum['GCC_Count'] = counts
+    gcc_counts = (author_gcc_sum > 0).sum(axis=1)
+    author_gcc_sum['GCC_Count'] = gcc_counts
 
-    author_gcc_sum_sorted = author_gcc_sum.sort_values(by=['GCC_Count'], ascending=False).head(n)
+    twitter_counts = author_by_gcc_df.T.sum()
+    author_gcc_sum['Twitter_Count'] = twitter_counts
+
+    author_gcc_sum_sorted = author_gcc_sum.sort_values(by=['GCC_Count', 'Twitter_Count'],
+                                                       ascending=[False, False]).head(n)
 
     print(author_gcc_sum_sorted)
     return author_gcc_sum_sorted

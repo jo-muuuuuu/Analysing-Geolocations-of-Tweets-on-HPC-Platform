@@ -8,55 +8,6 @@ import util
 from collections import defaultdict
 
 
-# def top_ten_id(twitter):
-#     author_id_dict = {}
-#
-#     for i in range(len(twitter)):
-#         cur_author_id = twitter[i]['data'].get("author_id")
-#
-#         if cur_author_id in author_id_dict:
-#             temp = author_id_dict.get(cur_author_id) + 1
-#             author_id_dict.update({cur_author_id: temp})
-#         else:
-#             author_id_dict.update({cur_author_id: 1})
-#
-#     # print(twitter_dict)
-#     id_dict_sorted = sorted(author_id_dict.items(), key=lambda x: x[1], reverse=True)
-#
-#     for j in range(10):
-#         print(id_dict_sorted[j])
-
-
-# def top_places(twitter, place_code_lst):
-#     place_code_dict = {}
-
-#     for j in range(len(twitter)):
-#         includes_data = twitter[j]['includes'].get("places")[0]
-#         place_name = includes_data.get("full_name").lower()
-
-#         index = get_index(place_name)
-#         if index < 0:
-#             continue
-
-#         for k in range(len(place_code_lst[index])):
-#             for (key, value) in place_code_lst[index][k].items():
-#                 temp_name = key
-#                 temp_code = value
-
-#             if place_name.find(temp_name) != -1:
-#                 if temp_code in place_code_dict.keys():
-#                     temp = place_code_dict.get(temp_code) + 1
-#                     place_code_dict.update({temp_code: temp})
-#                 else:
-#                     place_code_dict.update({temp_code: 1})
-
-#     # print(place_code_dict)
-#     name_dict_sorted = sorted(place_code_dict.items(), key=lambda x: x[1], reverse=True)
-
-#     for l in range(7):
-#         print(name_dict_sorted[l])
-
-
 def update_dict(id_places_dict, cur_author_id, code):
     """
     Increment the count of twitters from a single author
