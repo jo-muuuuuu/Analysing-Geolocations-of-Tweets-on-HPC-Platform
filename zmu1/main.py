@@ -1,5 +1,6 @@
 import ijson
 import argparse
+import time
 import os.path
 import numpy as np
 import pandas as pd
@@ -68,7 +69,7 @@ def update_dict(id_places_dict, cur_author_id, code):
     # else:
     #     cur.update({code: 1})
 
-def process_data(twitter_data_point, code_by_places, id_places_dict):
+def process_data(twitter_data_point, code_by_places, id_places_dict, ambiguous_locations:set):
     cur_author_id = twitter_data_point['data'].get("author_id")
 
     if cur_author_id not in id_places_dict.keys():
@@ -76,7 +77,7 @@ def process_data(twitter_data_point, code_by_places, id_places_dict):
 
     t_place_name = twitter_data_point['includes'].get("places")[0].get("full_name").lower()
 
-    code = util.get_gcc_code(t_place_name, code_by_places)
+    code = util.get_gcc_code(t_place_name, code_by_places, ambiguous_locations)
     if code:
         update_dict(id_places_dict, cur_author_id, code)
             
@@ -87,6 +88,7 @@ def main(data_path, location_path):
     code_by_places = util.process_location_file(location_path)
 
     id_places_dict = {}
+    ambiguous_locations = defaultdict(int)
     # with open(os.path.dirname(__file__) + '/../test_3.json', 'r', encoding='UTF-8') as twitter_file:
     with open(os.path.dirname(__file__) + data_path, 'r', encoding='UTF-8') as twitter_file:
         twitter = ijson.items(twitter_file, 'item')
@@ -98,7 +100,7 @@ def main(data_path, location_path):
         # we have the number of processors   -    comm_size
         # if the remainder r, where r = index % comm_size, is equal to the comm_rank, the current process should process it, otherwise, ignore it.
         for index, twitter_data_point in enumerate(twitter):
-            process_data(twitter_data_point, code_by_places, id_places_dict)
+            process_data(twitter_data_point, code_by_places, id_places_dict, ambiguous_locations)
         
         author_list = id_places_dict.keys()
         author_by_gcc_arr = np.array([a for a in id_places_dict.values()])
@@ -118,6 +120,9 @@ def main(data_path, location_path):
         print("==== Authors by the number of tweets in descending order ====")
         util.get_top_author_by_num_of_tweet(author_by_gcc_df)
 
+        print("==== Top 10 Ambiguous Locations ====")
+        util.print_top_n_in_dict(ambiguous_locations)
+
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Processing Twitter data focusing on the geolocation attribute')
@@ -130,6 +135,8 @@ if __name__ == '__main__':
     location_path = args.location
     data_path = args.data
 
+    start_time = time.time()
     main(data_path, location_path)
+    print("--- %.3f seconds ---" % (time.time() - start_time))
 
     
