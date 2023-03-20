@@ -73,7 +73,7 @@ def check_against_places(place_first_part, place_dict, place_second_part=None):
                 refined_matched_places = [place for place in places_matched if re.search(f"{place_first_part}.*\({state_abb}\).*", place)]
                 if len(refined_matched_places) == 0:
                     return None
-                elif len(refined_matched_places) > 1 and len(set(place_dict[place] for place in refined_matched_places) > 1):
+                elif len(refined_matched_places) > 1 and len(set(place_dict[place] for place in refined_matched_places))> 1:
                     return None
                 elif is_gcc(place_dict[refined_matched_places[0]]):
                     return place_dict[refined_matched_places[0]]
