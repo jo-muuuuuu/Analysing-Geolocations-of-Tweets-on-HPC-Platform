@@ -145,8 +145,8 @@ def main(data_path, location_path):
         print("==== Authors by the number of tweets in descending order ====")
         util.get_top_author_by_num_of_tweet(author_by_gcc_df)
 
-        # print("==== Top 10 Ambiguous Locations ====")
-        # util.print_top_n_in_dict(ambiguous_locations)
+        print("==== Top Authors by the number of Locations ====")
+        util.get_top_author_by_num_of_gcc(author_by_gcc_df)
 
         print("==== Top 10 Ambiguous Locations ====")
         util.print_top_n_in_dict(ambiguous_locations)

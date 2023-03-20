@@ -192,11 +192,29 @@ def get_top_author_by_num_of_tweet(author_by_gcc_df, n=10):
     :return: Sorted List
     """
 
-    author_tweet_sum = author_by_gcc_df.T.sum() # Transpose rows and columns
+    author_tweet_sum = author_by_gcc_df.T.sum()  # Transpose rows and columns
     author_tweet_sum_sorted = author_tweet_sum.sort_values(ascending=False).head(n)
 
     print(author_tweet_sum_sorted)
     return author_tweet_sum_sorted
+
+
+def get_top_author_by_num_of_gcc(author_by_gcc_df, n=10):
+    """
+    Get a list of Authors with most numbers of GCCs
+    :param author_by_gcc_df: Dataframe of twitter counts
+    :param n: Number of authors
+    :return: Sorted List
+    """
+    author_gcc_sum = author_by_gcc_df
+
+    counts = (author_gcc_sum > 0).sum(axis=1)
+    author_gcc_sum['GCC_Count'] = counts
+
+    author_gcc_sum_sorted = author_gcc_sum.sort_values(by=['GCC_Count'], ascending=False).head(n)
+
+    print(author_gcc_sum_sorted)
+    return author_gcc_sum_sorted
 
 
 def print_top_n_in_dict(output_set: dict, n: int = 10, desc: bool = True):
