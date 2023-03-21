@@ -107,30 +107,43 @@ def check_against_places(place_first_part, place_dict, place_second_part=None):
         # get all returned gcc in a set
         gcc_variances = set(place_dict[place] for place in places_matched)
         # if we only have one kind of gcc code, then it's the one
-        if len(gcc_variances) == 1 and is_gcc(list(gcc_variances)[0]):
-            return list(gcc_variances)[0],
+        if len(gcc_variances) == 1:
+            if is_gcc(list(gcc_variances)[0]):
+                return list(gcc_variances)[0],
+            else:
+                return None, "NOT_A_GCC"
 
         elif len(gcc_variances) > 1:
             state_abb = STATE_ABB_DICT.get(place_second_part.strip())
             if state_abb:
-                refined_matched_places = [place for place in places_matched if
-                                          re.search(f".*{place_first_part}.*({state_abb}).*", place)]
+                # Try to find a specific match with state info
+                specific_refined_matched_places = [place for place in places_matched if
+                                          re.search(f"{place_first_part} \({state_abb}\.?\).*", place)]
+                if len(specific_refined_matched_places) == 1:
+                        if is_gcc(place_dict[specific_refined_matched_places[0]]):
+                            return place_dict[specific_refined_matched_places[0]],
+                        else:
+                            return None, "NOT_A_GCC"
+
+                # Try to do a fuzzy match with state info
+                fuzzy_refined_matched_places = [place for place in places_matched if
+                                          re.search(f".*{place_first_part}.*({state_abb}\.?).*", place)]
                 # Find place names include state abbreviations in brackets, like abbotsford (nsw).
 
-                if len(refined_matched_places) == 0:
+                if len(fuzzy_refined_matched_places) == 0:
                     return None, f"{AMBIGUOUS_REASON}: Multiple Matches Found, But None Matched After State Info Applied"
 
-                elif len(refined_matched_places) > 1 and \
-                        len(set(place_dict[place] for place in refined_matched_places)) > 1:
+                elif len(fuzzy_refined_matched_places) > 1 and \
+                        len(set(place_dict[place] for place in fuzzy_refined_matched_places)) > 1:
                     return None, f"{AMBIGUOUS_REASON}: Multiple Matches Found After State Info Applied"
 
                 # REPORT: If the only refined match can't match the location with a GCC,
                 # we don't consider it as AMBIGUOUS
                 # e.g. 'gold coast, queensland' is not ambiguous, as all entries found in sal.json are not within a GCC.
-                elif is_gcc(place_dict[refined_matched_places[0]]):
-                    return place_dict[refined_matched_places[0]],
+                elif is_gcc(place_dict[fuzzy_refined_matched_places[0]]):
+                    return place_dict[fuzzy_refined_matched_places[0]],
     else:
-        return None, "f{AMBIGUOUS_REASON}: NO_MATCH_FOUND"
+        return None, "NO_MATCH_FOUND"
 
     return None, "NOT_A_GCC"
 
