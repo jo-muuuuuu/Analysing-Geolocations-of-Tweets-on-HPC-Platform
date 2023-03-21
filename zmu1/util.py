@@ -234,14 +234,16 @@ def get_top_author_by_num_of_gcc(author_by_gcc_df, n=10):
     return author_gcc_sum_sorted
 
 
-def print_top_n_in_dict(output_set: dict, n: int = 10, desc: bool = True):
+def print_top_n_in_dict(output_dic: dict, n: int = 10, desc: bool = True):
     """
     Print top n in the dict
-    :param output_set: Set to output
+    :param output_dic: Dict to output
     :param n: Number of output rows, default value set to 10
     :param desc: Desc/Asc Order
     """
 
-    sorted_dict = sorted(output_set.items(), key=lambda x: x[1], reverse=desc)
+    sorted_dict = sorted(output_dic.items(), key=lambda x: x[1], reverse=desc)
+    n_dict = len(output_dic)
+    n = n if n <= n_dict else n_dict
     for i in range(n):
         print(sorted_dict[i])
