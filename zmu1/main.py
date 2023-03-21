@@ -53,7 +53,7 @@ def main(data_path, location_path):
     :param data_path: The directory path of the place information file (Abbreviations)
     :param location_path: The directory path of the twitter file to be processed
     """
-
+    start_time = time.time()
     # Get gcc code by locations. data looks like: [{"abb": "1gsyd"}, ...]
     code_by_places = util.process_location_file(location_path)
 
@@ -76,12 +76,12 @@ def main(data_path, location_path):
             process_data(twitter_data_point, code_by_places, id_places_dict, ambiguous_locations)
         
         author_list = id_places_dict.keys()
-        # print(author_list, "\n")
         author_by_gcc_arr = np.array([a for a in id_places_dict.values()])
-        # print(author_by_gcc_arr, "\n")
         author_by_gcc_df = pd.DataFrame(author_by_gcc_arr, index=pd.Index(author_list, name="Authors:"),
                                         columns=pd.Index(util.GCC_DICT.values(), name='GGC:'))
-        # print(author_by_gcc_df, "\n")
+        
+        print("--- Time to Process Data: %.3f seconds ---" % (time.time() - start_time))
+
 
         # MPI MERGE
         # Get all dataframes and then concatenate them, e.g.
