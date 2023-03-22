@@ -97,7 +97,7 @@ def main(data_path, location_path):
                 data = comm.recv(source=i)
                 gathered_data.append(data)
 
-                final_data = pd.concat(gathered_data, axis=0)
+            final_data = np.concatenate(gathered_data, axis=0)
 
         else:
             comm.send(author_by_gcc_arr, dest=0)
@@ -106,21 +106,21 @@ def main(data_path, location_path):
             author_by_gcc_df = pd.DataFrame(final_data, index=pd.Index(author_list, name="Authors:"),
                                         columns=pd.Index(util.GCC_DICT.values(), name='GGC:'))
 
-        print("--- Time to Process Data: %.3f seconds ---" % (time.time() - start_time))
+            print("--- Time to Process Data: %.3f seconds ---" % (time.time() - start_time))
 
-        # OUTPUT
-        # Return GCC by the number of tweets in descending order
-        print("==== GCCs by the number of tweets in descending order ====")
-        util.get_top_gcc_by_num_of_tweet(author_by_gcc_df)
+            # OUTPUT
+            # Return GCC by the number of tweets in descending order
+            print("==== GCCs by the number of tweets in descending order ====")
+            util.get_top_gcc_by_num_of_tweet(author_by_gcc_df)
 
-        print("==== Authors by the number of tweets in descending order ====")
-        util.get_top_author_by_num_of_tweet(author_by_gcc_df)
+            print("==== Authors by the number of tweets in descending order ====")
+            util.get_top_author_by_num_of_tweet(author_by_gcc_df)
 
-        print("==== Top Authors by the number of Locations ====")
-        util.get_top_author_by_num_of_gcc(author_by_gcc_df)
+            print("==== Top Authors by the number of Locations ====")
+            util.get_top_author_by_num_of_gcc(author_by_gcc_df)
 
-        print("==== Top 10 Ambiguous Locations ====")
-        util.print_top_n_in_dict(ambiguous_locations)
+            print("==== Top 10 Ambiguous Locations ====")
+            util.print_top_n_in_dict(ambiguous_locations)
 
 
 if __name__ == '__main__':
