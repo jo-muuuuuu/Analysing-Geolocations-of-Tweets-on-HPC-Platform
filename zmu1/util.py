@@ -127,8 +127,8 @@ def check_against_places(place_first_part, place_dict, place_second_part=None):
 
                 # Try to do a fuzzy match with state info
                 fuzzy_refined_matched_places = [place for place in places_matched if
-                                          re.search(f".*{place_first_part}.*({state_abb}\.?).*", place)]
-                # Find place names include state abbreviations in brackets, like abbotsford (nsw).
+                                          re.search(f".*{place_first_part}.*{state_abb}\.?.*", place)]
+                # Find place names include state abbreviations in brackets, like white rock (cairns - qld).
 
                 if len(fuzzy_refined_matched_places) == 0:
                     return None, f"{AMBIGUOUS_REASON}: Multiple Matches Found, But None Matched After State Info Applied"
