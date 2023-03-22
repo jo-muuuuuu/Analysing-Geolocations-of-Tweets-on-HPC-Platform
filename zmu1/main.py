@@ -6,6 +6,7 @@ import numpy as np
 import pandas as pd
 import util
 from collections import defaultdict
+from mpi4py import MPI
 
 
 def update_dict(id_places_dict, cur_author_id, code):
@@ -54,6 +55,12 @@ def main(data_path, location_path):
     :param location_path: The directory path of the twitter file to be processed
     """
     start_time = time.time()
+
+    # MPI Initialization
+    comm = MPI.COMM_WORLD
+    comm_rank = comm.Get_rank()
+    comm_size = comm.Get_size()
+
     # Get gcc code by locations. data looks like: [{"abb": "1gsyd"}, ...]
     code_by_places = util.process_location_file(location_path)
 
@@ -73,20 +80,33 @@ def main(data_path, location_path):
         # the current process should process it, otherwise, ignore it.
 
         for index, twitter_data_point in enumerate(twitter):
-            process_data(twitter_data_point, code_by_places, id_places_dict, ambiguous_locations)
+            r = index % comm_size
+            if r == comm_rank:
+                process_data(twitter_data_point, code_by_places, id_places_dict, ambiguous_locations)
         
         author_list = id_places_dict.keys()
         author_by_gcc_arr = np.array([a for a in id_places_dict.values()])
-        author_by_gcc_df = pd.DataFrame(author_by_gcc_arr, index=pd.Index(author_list, name="Authors:"),
-                                        columns=pd.Index(util.GCC_DICT.values(), name='GGC:'))
-        
-        print("--- Time to Process Data: %.3f seconds ---" % (time.time() - start_time))
-
 
         # MPI MERGE
         # Get all dataframes and then concatenate them, e.g.
         # df_sum_al = pd.concat([df_1, df_2, ...]).groupby("Authors:").sum()
+        if comm_rank == 0:
+            gathered_data = [author_by_gcc_arr]
 
+            for i in range(1, comm_size):
+                data = comm.recv(source=i)
+                gathered_data.append(data)
+
+                final_data = pd.concat(gathered_data, axis=0)
+
+        else:
+            comm.send(author_by_gcc_arr, dest=0)
+
+        if comm_rank == 0:
+            author_by_gcc_df = pd.DataFrame(final_data, index=pd.Index(author_list, name="Authors:"),
+                                        columns=pd.Index(util.GCC_DICT.values(), name='GGC:'))
+
+        print("--- Time to Process Data: %.3f seconds ---" % (time.time() - start_time))
 
         # OUTPUT
         # Return GCC by the number of tweets in descending order
