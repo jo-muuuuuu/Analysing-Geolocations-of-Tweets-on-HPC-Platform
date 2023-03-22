@@ -8,10 +8,10 @@ STATE_ABB_DICT = {
     "new south wales": "nsw",
     "victoria": "vic",
     "queensland": "qld",
-    "south australia": "sau",
-    "western australia": "wau",
+    "south australia": "sa",
+    "western australia": "wa",
     "tasmania": "tas",
-    "northern territory": "nte"
+    "northern territory": "nt"
 }
 
 GCC_DICT = {"sydney": "1gsyd", "melbourne": "2gmel", "brisbane": "3gbri", "adelaide": "4gade", "perth": "5gper",
@@ -107,30 +107,43 @@ def check_against_places(place_first_part, place_dict, place_second_part=None):
         # get all returned gcc in a set
         gcc_variances = set(place_dict[place] for place in places_matched)
         # if we only have one kind of gcc code, then it's the one
-        if len(gcc_variances) == 1 and is_gcc(list(gcc_variances)[0]):
-            return list(gcc_variances)[0],
+        if len(gcc_variances) == 1:
+            if is_gcc(list(gcc_variances)[0]):
+                return list(gcc_variances)[0],
+            else:
+                return None, "NOT_A_GCC"
 
         elif len(gcc_variances) > 1:
             state_abb = STATE_ABB_DICT.get(place_second_part.strip())
             if state_abb:
-                refined_matched_places = [place for place in places_matched if
-                                          re.search(f".*{place_first_part}.*({state_abb}).*", place)]
+                # Try to find a specific match with state info
+                specific_refined_matched_places = [place for place in places_matched if
+                                          re.search(f"{place_first_part} \({state_abb}\.?\).*", place)]
+                if len(specific_refined_matched_places) == 1:
+                        if is_gcc(place_dict[specific_refined_matched_places[0]]):
+                            return place_dict[specific_refined_matched_places[0]],
+                        else:
+                            return None, "NOT_A_GCC"
+
+                # Try to do a fuzzy match with state info
+                fuzzy_refined_matched_places = [place for place in places_matched if
+                                          re.search(f".*{place_first_part}.*({state_abb}\.?).*", place)]
                 # Find place names include state abbreviations in brackets, like abbotsford (nsw).
 
-                if len(refined_matched_places) == 0:
+                if len(fuzzy_refined_matched_places) == 0:
                     return None, f"{AMBIGUOUS_REASON}: Multiple Matches Found, But None Matched After State Info Applied"
 
-                elif len(refined_matched_places) > 1 and \
-                        len(set(place_dict[place] for place in refined_matched_places)) > 1:
+                elif len(fuzzy_refined_matched_places) > 1 and \
+                        len(set(place_dict[place] for place in fuzzy_refined_matched_places)) > 1:
                     return None, f"{AMBIGUOUS_REASON}: Multiple Matches Found After State Info Applied"
 
                 # REPORT: If the only refined match can't match the location with a GCC,
                 # we don't consider it as AMBIGUOUS
                 # e.g. 'gold coast, queensland' is not ambiguous, as all entries found in sal.json are not within a GCC.
-                elif is_gcc(place_dict[refined_matched_places[0]]):
-                    return place_dict[refined_matched_places[0]],
+                elif is_gcc(place_dict[fuzzy_refined_matched_places[0]]):
+                    return place_dict[fuzzy_refined_matched_places[0]],
     else:
-        return None, "f{AMBIGUOUS_REASON}: NO_MATCH_FOUND"
+        return None, "NO_MATCH_FOUND"
 
     return None, "NOT_A_GCC"
 
@@ -208,23 +221,29 @@ def get_top_author_by_num_of_gcc(author_by_gcc_df, n=10):
     """
     author_gcc_sum = author_by_gcc_df
 
-    counts = (author_gcc_sum > 0).sum(axis=1)
-    author_gcc_sum['GCC_Count'] = counts
+    gcc_counts = (author_gcc_sum > 0).sum(axis=1)
+    author_gcc_sum['GCC_Count'] = gcc_counts
 
-    author_gcc_sum_sorted = author_gcc_sum.sort_values(by=['GCC_Count'], ascending=False).head(n)
+    twitter_counts = author_by_gcc_df.T.sum()
+    author_gcc_sum['Twitter_Count'] = twitter_counts
+
+    author_gcc_sum_sorted = author_gcc_sum.sort_values(by=['GCC_Count', 'Twitter_Count'],
+                                                       ascending=[False, False]).head(n)
 
     print(author_gcc_sum_sorted)
     return author_gcc_sum_sorted
 
 
-def print_top_n_in_dict(output_set: dict, n: int = 10, desc: bool = True):
+def print_top_n_in_dict(output_dic: dict, n: int = 10, desc: bool = True):
     """
     Print top n in the dict
-    :param output_set: Set to output
+    :param output_dic: Dict to output
     :param n: Number of output rows, default value set to 10
     :param desc: Desc/Asc Order
     """
 
-    sorted_dict = sorted(output_set.items(), key=lambda x: x[1], reverse=desc)
+    sorted_dict = sorted(output_dic.items(), key=lambda x: x[1], reverse=desc)
+    n_dict = len(output_dic)
+    n = n if n <= n_dict else n_dict
     for i in range(n):
         print(sorted_dict[i])
