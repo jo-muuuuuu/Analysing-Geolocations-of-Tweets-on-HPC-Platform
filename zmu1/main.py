@@ -20,11 +20,7 @@ def update_dict(id_places_dict, cur_author_id, code):
     cur_list = id_places_dict.get(cur_author_id)
     index = int(code[:1]) - 1
     cur_list[index] = cur_list[index] + 1
-    # if code in cur.keys():
-    #     temp = cur.get(code) + 1
-    #     cur.update({code: temp})
-    # else:
-    #     cur.update({code: 1})
+
 
 
 def process_data(twitter_data_point, code_by_places, id_places_dict, ambiguous_locations: set):
@@ -108,6 +104,8 @@ def main(data_path, location_path):
         if comm_rank == 0:
             author_by_gcc_df = pd.DataFrame(final_data, index=pd.Index(author_list, name="Authors:"),
                                         columns=pd.Index(util.GCC_DICT.values(), name='GGC:'))
+            
+            author_by_gcc_df.groupby(level=0).sum()
 
             print("--- Time to Process Data: %.3f seconds ---" % (time.time() - start_time))
 
