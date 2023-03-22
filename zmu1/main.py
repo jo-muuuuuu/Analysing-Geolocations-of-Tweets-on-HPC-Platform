@@ -5,7 +5,7 @@ import os.path
 import numpy as np
 import pandas as pd
 import util
-from collections import defaultdict
+from collections import defaultdict, Counter
 from mpi4py import MPI
 
 
@@ -88,10 +88,12 @@ def main(data_path, location_path):
         # df_sum_al = pd.concat([df_1, df_2, ...]).groupby("Authors:").sum()
         if comm_rank == 0:
             gathered_data = [author_by_gcc_arr]
+            ambiguous_locations = Counter(ambiguous_locations)
 
             for i in range(1, comm_size):
                 data = comm.recv(source=i)
                 author_list.extend(comm.recv(source=i))
+                ambiguous_locations = ambiguous_locations + Counter(comm.recv(source=i))
 
                 gathered_data.append(data)
 
@@ -100,12 +102,14 @@ def main(data_path, location_path):
         else:
             comm.send(author_by_gcc_arr, dest=0)
             comm.send(author_list, dest=0)
+            comm.send(ambiguous_locations, dest=0)
 
         if comm_rank == 0:
             author_by_gcc_df = pd.DataFrame(final_data, index=pd.Index(author_list, name="Authors:"),
                                         columns=pd.Index(util.GCC_DICT.values(), name='GGC:'))
             
             author_by_gcc_df = author_by_gcc_df.groupby(level=0).sum()
+
 
             print("--- Time to Process Data: %.3f seconds ---" % (time.time() - start_time))
 
