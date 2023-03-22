@@ -193,7 +193,7 @@ def get_top_gcc_by_num_of_tweet(author_by_gcc_df, n=8):
     gcc_tweet_sum = author_by_gcc_df.sum()
     gcc_tweet_sum_sorted = gcc_tweet_sum.sort_values(ascending=False).head(n)
 
-    print(gcc_tweet_sum_sorted)
+    print(gcc_tweet_sum_sorted.to_string())
 
 
 def get_top_author_by_num_of_tweet(author_by_gcc_df, n=10):
@@ -207,7 +207,7 @@ def get_top_author_by_num_of_tweet(author_by_gcc_df, n=10):
     author_tweet_sum = author_by_gcc_df.T.sum()  # Transpose rows and columns
     author_tweet_sum_sorted = author_tweet_sum.sort_values(ascending=False).head(n)
 
-    print(author_tweet_sum_sorted)
+    print(author_tweet_sum_sorted.to_string())
 
 
 def get_top_author_by_num_of_gcc(author_by_gcc_df, n=10):
