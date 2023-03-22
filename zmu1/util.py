@@ -194,7 +194,6 @@ def get_top_gcc_by_num_of_tweet(author_by_gcc_df, n=8):
     gcc_tweet_sum_sorted = gcc_tweet_sum.sort_values(ascending=False).head(n)
 
     print(gcc_tweet_sum_sorted)
-    return gcc_tweet_sum_sorted
 
 
 def get_top_author_by_num_of_tweet(author_by_gcc_df, n=10):
@@ -209,7 +208,6 @@ def get_top_author_by_num_of_tweet(author_by_gcc_df, n=10):
     author_tweet_sum_sorted = author_tweet_sum.sort_values(ascending=False).head(n)
 
     print(author_tweet_sum_sorted)
-    return author_tweet_sum_sorted
 
 
 def get_top_author_by_num_of_gcc(author_by_gcc_df, n=10):
@@ -230,8 +228,7 @@ def get_top_author_by_num_of_gcc(author_by_gcc_df, n=10):
     author_gcc_sum_sorted = author_gcc_sum.sort_values(by=['GCC_Count', 'Twitter_Count'],
                                                        ascending=[False, False]).head(n)
 
-    print(author_gcc_sum_sorted)
-    return author_gcc_sum_sorted
+    print(author_gcc_sum_sorted.to_string())
 
 
 def print_top_n_in_dict(output_dic: dict, n: int = 10, desc: bool = True):
