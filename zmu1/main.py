@@ -84,7 +84,7 @@ def main(data_path, location_path):
             if r == comm_rank:
                 process_data(twitter_data_point, code_by_places, id_places_dict, ambiguous_locations)
         
-        author_list = id_places_dict.keys()
+        author_list = list(id_places_dict.keys())
         author_by_gcc_arr = np.array([a for a in id_places_dict.values()])
 
         # MPI MERGE
@@ -95,12 +95,15 @@ def main(data_path, location_path):
 
             for i in range(1, comm_size):
                 data = comm.recv(source=i)
+                author_list.extend(comm.recv(source=i))
+
                 gathered_data.append(data)
 
             final_data = np.concatenate(gathered_data, axis=0)
 
         else:
             comm.send(author_by_gcc_arr, dest=0)
+            comm.send(author_list, dest=0)
 
         if comm_rank == 0:
             author_by_gcc_df = pd.DataFrame(final_data, index=pd.Index(author_list, name="Authors:"),
