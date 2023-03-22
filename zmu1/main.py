@@ -105,7 +105,7 @@ def main(data_path, location_path):
             author_by_gcc_df = pd.DataFrame(final_data, index=pd.Index(author_list, name="Authors:"),
                                         columns=pd.Index(util.GCC_DICT.values(), name='GGC:'))
             
-            author_by_gcc_df.groupby(level=0).sum()
+            author_by_gcc_df = author_by_gcc_df.groupby(level=0).sum()
 
             print("--- Time to Process Data: %.3f seconds ---" % (time.time() - start_time))
 
