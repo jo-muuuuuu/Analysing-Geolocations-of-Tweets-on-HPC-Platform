@@ -1,6 +1,7 @@
 import json
 import os
 import re
+from pandas import pd
 
 AMBIGUOUS_REASON = "AMBIGUOUS"
 
@@ -207,10 +208,11 @@ def get_top_author_by_num_of_tweet(author_by_gcc_df, n=10):
 
     author_tweet_sum = author_by_gcc_df.T.sum()  # Transpose rows and columns, then sum
 
-    author_tweet_sum = author_tweet_sum.rank(ascending=False, method="min").sort_values() # Rank and sort
-    author_tweet_sum = author_tweet_sum[author_tweet_sum <= author_tweet_sum[n]] # Get top n twetters
+    ranked_sums = author_tweet_sum.rank(ascending=False, method="min")
 
-    print(author_tweet_sum.to_string())
+    result = pd.DataFrame({'Sum': author_tweet_sum, 'Rank': ranked_sums}).sort_values("Rank")
+
+    print(result.to_string())
 
 
 
