@@ -229,7 +229,7 @@ def get_top_author_by_num_of_gcc(author_by_gcc_df, n=10):
     gcc_counts = (author_gcc_sum > 0).sum(axis=1)
     author_gcc_sum['GCC_Count'] = gcc_counts
 
-    twitter_counts = author_by_gcc_df.T[:-2].sum()
+    twitter_counts = author_by_gcc_df.T[:-1].sum()
     author_gcc_sum['Twitter_Count'] = twitter_counts
 
     # author_gcc_sum_sorted = author_gcc_sum.sort_values(by=['GCC_Count', 'Twitter_Count'],
