@@ -191,9 +191,11 @@ def get_top_gcc_by_num_of_tweet(author_by_gcc_df, n=8):
     """
 
     gcc_tweet_sum = author_by_gcc_df.sum()
-    gcc_tweet_sum_sorted = gcc_tweet_sum.sort_values(ascending=False).head(n)
+    gcc_tweet_sum = gcc_tweet_sum.rank(ascending=False, method="min").sort_values() # Rank and sort
+    gcc_tweet_sum = gcc_tweet_sum[gcc_tweet_sum <= gcc_tweet_sum[n]] # Get top n twetters
 
-    print(gcc_tweet_sum_sorted.to_string())
+    print(gcc_tweet_sum.to_string())
+    
 
 
 def get_top_author_by_num_of_tweet(author_by_gcc_df, n=10):
@@ -204,10 +206,13 @@ def get_top_author_by_num_of_tweet(author_by_gcc_df, n=10):
     :return: Sorted List
     """
 
-    author_tweet_sum = author_by_gcc_df.T.sum()  # Transpose rows and columns
-    author_tweet_sum_sorted = author_tweet_sum.sort_values(ascending=False).head(n)
+    author_tweet_sum = author_by_gcc_df.T.sum()  # Transpose rows and columns, then sum
 
-    print(author_tweet_sum_sorted.to_string())
+    author_tweet_sum = author_tweet_sum.rank(ascending=False, method="min").sort_values() # Rank and sort
+    author_tweet_sum = author_tweet_sum[author_tweet_sum <= author_tweet_sum[n]] # Get top n twetters
+
+    print(author_tweet_sum.to_string())
+
 
 
 def get_top_author_by_num_of_gcc(author_by_gcc_df, n=10):
@@ -228,9 +233,9 @@ def get_top_author_by_num_of_gcc(author_by_gcc_df, n=10):
     # author_gcc_sum_sorted = author_gcc_sum.sort_values(by=['GCC_Count', 'Twitter_Count'],
                                                     #    ascending=[False, False])
     author_gcc_sum['Rank'] = author_gcc_sum[['GCC_Count', 'Twitter_Count']].apply(tuple, axis=1).rank(method='min', ascending=False)
-    author_gcc_sum.sort_values("Rank")
-    author_gcc_sum = author_gcc_sum[author_gcc_sum['Rank'] <= 10]
-    print(author_gcc_sum.to_string())
+    author_gcc_sum_sorted = author_gcc_sum.sort_values("Rank")
+    author_gcc_sum_sorted = author_gcc_sum_sorted[author_gcc_sum_sorted['Rank'] <= author_gcc_sum_sorted[n]['Rank']]
+    print(author_gcc_sum_sorted.to_string())
 
 
 def print_top_n_in_dict(output_dic: dict, n: int = 10, desc: bool = True):
