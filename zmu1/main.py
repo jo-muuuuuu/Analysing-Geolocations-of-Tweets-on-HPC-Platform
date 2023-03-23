@@ -116,14 +116,18 @@ def main(data_path, location_path):
             print("--- Time to Process Data: %.3f seconds ---" % (time.time() - start_time))
 
             # OUTPUT
-            # Return GCC by the number of tweets in descending order
-            print("==== GCCs by the number of tweets in descending order ====")
+            print("==== Authors by the number of all tweets (All Location) in descending order ====")
             util.get_top_gcc_by_num_of_tweet(author_by_gcc_df)
+            author_by_gcc_df = author_by_gcc_df.drop('RURAL', axis=1)
 
-            print("==== Authors by the number of tweets in descending order ====")
+            # # Return GCC by the number of tweets in descending order
+            # print("==== GCCs by the number of tweets in descending order ====")
+            # util.get_top_gcc_by_num_of_tweet(author_by_gcc_df)
+
+            print("==== Authors by the number of tweets in GCCs in descending order ====")
             util.get_top_author_by_num_of_tweet(author_by_gcc_df)
 
-            print("==== Top Authors by the number of Locations ====")
+            print("==== Top Authors by the number of Locations in descending order ====")
             util.get_top_author_by_num_of_gcc(author_by_gcc_df)
 
             print("==== Top 10 Ambiguous Locations ====")
