@@ -1,4 +1,5 @@
 #!/bin/bash
+#SBATCH --nodes=1
 #SBATCH --ntasks=8
 #SBATCH --time=0-00:15:00
 module load python/3.8.6
