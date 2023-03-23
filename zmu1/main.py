@@ -117,7 +117,7 @@ def main(data_path, location_path):
 
             # OUTPUT
             print("==== Authors by the number of all tweets (All Location) in descending order ====")
-            util.get_top_gcc_by_num_of_tweet(author_by_gcc_df)
+            util.get_top_author_by_num_of_tweet(author_by_gcc_df)
             author_by_gcc_df = author_by_gcc_df.drop('RURAL', axis=1)
 
             # # Return GCC by the number of tweets in descending order
