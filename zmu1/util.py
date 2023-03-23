@@ -191,10 +191,9 @@ def get_top_gcc_by_num_of_tweet(author_by_gcc_df, n=8):
     """
 
     gcc_tweet_sum = author_by_gcc_df.sum()
-    gcc_tweet_sum = gcc_tweet_sum.rank(ascending=False, method="min").sort_values() # Rank and sort
-    gcc_tweet_sum = gcc_tweet_sum[gcc_tweet_sum <= gcc_tweet_sum[n]] # Get top n twetters
+    gcc_tweet_sum_sorted = gcc_tweet_sum.sort_values(ascending=False).head(n)
 
-    print(gcc_tweet_sum.to_string())
+    print(gcc_tweet_sum_sorted.to_string())
     
 
 
