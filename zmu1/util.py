@@ -211,7 +211,8 @@ def get_top_author_by_num_of_tweet(author_by_gcc_df, n=10):
     ranked_sums = author_tweet_sum.rank(ascending=False, method="min")
 
     result = pd.DataFrame({'Sum': author_tweet_sum, 'Rank': ranked_sums}).sort_values("Rank")
-
+    row_name = result.index.values.tolist()[n-1]
+    result = result[result['Rank'] <= result.loc[row_name]['Rank']]
     print(result.to_string())
 
 
@@ -228,14 +229,15 @@ def get_top_author_by_num_of_gcc(author_by_gcc_df, n=10):
     gcc_counts = (author_gcc_sum > 0).sum(axis=1)
     author_gcc_sum['GCC_Count'] = gcc_counts
 
-    twitter_counts = author_by_gcc_df.T.sum()
+    twitter_counts = author_by_gcc_df.T[:-2].sum()
     author_gcc_sum['Twitter_Count'] = twitter_counts
 
     # author_gcc_sum_sorted = author_gcc_sum.sort_values(by=['GCC_Count', 'Twitter_Count'],
                                                     #    ascending=[False, False])
     author_gcc_sum['Rank'] = author_gcc_sum[['GCC_Count', 'Twitter_Count']].apply(tuple, axis=1).rank(method='min', ascending=False)
     author_gcc_sum_sorted = author_gcc_sum.sort_values("Rank")
-    author_gcc_sum_sorted = author_gcc_sum_sorted[author_gcc_sum_sorted['Rank'] <= author_gcc_sum_sorted[n]['Rank']]
+    row_name = author_gcc_sum_sorted.index.values.tolist()[n-1]
+    author_gcc_sum_sorted = author_gcc_sum_sorted[author_gcc_sum_sorted['Rank'] <= author_gcc_sum_sorted.loc[row_name]['Rank']]
     print(author_gcc_sum_sorted.to_string())
 
 
