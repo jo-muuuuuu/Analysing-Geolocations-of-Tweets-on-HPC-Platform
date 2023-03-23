@@ -1,6 +1,7 @@
 import json
 import os
 import re
+import pandas as pd
 
 AMBIGUOUS_REASON = "AMBIGUOUS"
 
@@ -15,7 +16,7 @@ STATE_ABB_DICT = {
 }
 
 GCC_DICT = {"sydney": "1gsyd", "melbourne": "2gmel", "brisbane": "3gbri", "adelaide": "4gade", "perth": "5gper",
-            "hobart": "6ghob", "darwin": "7gdar", "canberra": "8acte"}
+            "hobart": "6ghob", "darwin": "7gdar", "canberra": "8acte", "RURAL": "RURAL"}
 
 
 def process_location_file(location_path):
@@ -193,8 +194,8 @@ def get_top_gcc_by_num_of_tweet(author_by_gcc_df, n=8):
     gcc_tweet_sum = author_by_gcc_df.sum()
     gcc_tweet_sum_sorted = gcc_tweet_sum.sort_values(ascending=False).head(n)
 
-    print(gcc_tweet_sum_sorted)
-    return gcc_tweet_sum_sorted
+    print(gcc_tweet_sum_sorted.to_string())
+    
 
 
 def get_top_author_by_num_of_tweet(author_by_gcc_df, n=10):
@@ -205,11 +206,15 @@ def get_top_author_by_num_of_tweet(author_by_gcc_df, n=10):
     :return: Sorted List
     """
 
-    author_tweet_sum = author_by_gcc_df.T.sum()  # Transpose rows and columns
-    author_tweet_sum_sorted = author_tweet_sum.sort_values(ascending=False).head(n)
+    author_tweet_sum = author_by_gcc_df.T.sum()  # Transpose rows and columns, then sum
 
-    print(author_tweet_sum_sorted)
-    return author_tweet_sum_sorted
+    ranked_sums = author_tweet_sum.rank(ascending=False, method="min")
+
+    result = pd.DataFrame({'Sum': author_tweet_sum, 'Rank': ranked_sums}).sort_values("Rank")
+    row_name = result.index.values.tolist()[n-1]
+    result = result[result['Rank'] <= result.loc[row_name]['Rank']]
+    print(result.to_string())
+
 
 
 def get_top_author_by_num_of_gcc(author_by_gcc_df, n=10):
@@ -224,14 +229,16 @@ def get_top_author_by_num_of_gcc(author_by_gcc_df, n=10):
     gcc_counts = (author_gcc_sum > 0).sum(axis=1)
     author_gcc_sum['GCC_Count'] = gcc_counts
 
-    twitter_counts = author_by_gcc_df.T.sum()
+    twitter_counts = author_by_gcc_df.T[:-1].sum()
     author_gcc_sum['Twitter_Count'] = twitter_counts
 
-    author_gcc_sum_sorted = author_gcc_sum.sort_values(by=['GCC_Count', 'Twitter_Count'],
-                                                       ascending=[False, False]).head(n)
-
-    print(author_gcc_sum_sorted)
-    return author_gcc_sum_sorted
+    # author_gcc_sum_sorted = author_gcc_sum.sort_values(by=['GCC_Count', 'Twitter_Count'],
+                                                    #    ascending=[False, False])
+    author_gcc_sum['Rank'] = author_gcc_sum[['GCC_Count', 'Twitter_Count']].apply(tuple, axis=1).rank(method='min', ascending=False)
+    author_gcc_sum_sorted = author_gcc_sum.sort_values("Rank")
+    row_name = author_gcc_sum_sorted.index.values.tolist()[n-1]
+    author_gcc_sum_sorted = author_gcc_sum_sorted[author_gcc_sum_sorted['Rank'] <= author_gcc_sum_sorted.loc[row_name]['Rank']]
+    print(author_gcc_sum_sorted.to_string())
 
 
 def print_top_n_in_dict(output_dic: dict, n: int = 10, desc: bool = True):

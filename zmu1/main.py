@@ -5,7 +5,8 @@ import os.path
 import numpy as np
 import pandas as pd
 import util
-from collections import defaultdict
+from collections import defaultdict, Counter
+from mpi4py import MPI
 
 
 def update_dict(id_places_dict, cur_author_id, code):
@@ -17,13 +18,12 @@ def update_dict(id_places_dict, cur_author_id, code):
     """
 
     cur_list = id_places_dict.get(cur_author_id)
-    index = int(code[:1]) - 1
+    if code:
+        index = int(code[:1]) - 1  # One of GCCs
+    else:
+        index = 8 # Rural
     cur_list[index] = cur_list[index] + 1
-    # if code in cur.keys():
-    #     temp = cur.get(code) + 1
-    #     cur.update({code: temp})
-    # else:
-    #     cur.update({code: 1})
+
 
 
 def process_data(twitter_data_point, code_by_places, id_places_dict, ambiguous_locations: set):
@@ -38,13 +38,12 @@ def process_data(twitter_data_point, code_by_places, id_places_dict, ambiguous_l
     cur_author_id = twitter_data_point['data'].get("author_id")
 
     if cur_author_id not in id_places_dict.keys():
-        id_places_dict[cur_author_id] = [0] * 8
+        id_places_dict[cur_author_id] = [0] * 9
 
     t_place_name = twitter_data_point['includes'].get("places")[0].get("full_name").lower()
 
     code = util.get_gcc_code(t_place_name, code_by_places, ambiguous_locations)
-    if code:
-        update_dict(id_places_dict, cur_author_id, code)
+    update_dict(id_places_dict, cur_author_id, code)
             
 
 def main(data_path, location_path):
@@ -54,6 +53,12 @@ def main(data_path, location_path):
     :param location_path: The directory path of the twitter file to be processed
     """
     start_time = time.time()
+
+    # MPI Initialization
+    comm = MPI.COMM_WORLD
+    comm_rank = comm.Get_rank()
+    comm_size = comm.Get_size()
+
     # Get gcc code by locations. data looks like: [{"abb": "1gsyd"}, ...]
     code_by_places = util.process_location_file(location_path)
 
@@ -73,34 +78,60 @@ def main(data_path, location_path):
         # the current process should process it, otherwise, ignore it.
 
         for index, twitter_data_point in enumerate(twitter):
-            process_data(twitter_data_point, code_by_places, id_places_dict, ambiguous_locations)
+            r = index % comm_size
+            if r == comm_rank:
+                process_data(twitter_data_point, code_by_places, id_places_dict, ambiguous_locations)
         
-        author_list = id_places_dict.keys()
+        author_list = list(id_places_dict.keys())
         author_by_gcc_arr = np.array([a for a in id_places_dict.values()])
-        author_by_gcc_df = pd.DataFrame(author_by_gcc_arr, index=pd.Index(author_list, name="Authors:"),
-                                        columns=pd.Index(util.GCC_DICT.values(), name='GGC:'))
-        
-        print("--- Time to Process Data: %.3f seconds ---" % (time.time() - start_time))
-
 
         # MPI MERGE
         # Get all dataframes and then concatenate them, e.g.
         # df_sum_al = pd.concat([df_1, df_2, ...]).groupby("Authors:").sum()
+        if comm_rank == 0:
+            gathered_data = [author_by_gcc_arr]
+            ambiguous_locations = Counter(ambiguous_locations)
+
+            for i in range(1, comm_size):
+                data = comm.recv(source=i)
+                author_list.extend(comm.recv(source=i))
+                ambiguous_locations = ambiguous_locations + Counter(comm.recv(source=i))
+
+                gathered_data.append(data)
+
+            final_data = np.concatenate(gathered_data, axis=0)
+
+        else:
+            comm.send(author_by_gcc_arr, dest=0)
+            comm.send(author_list, dest=0)
+            comm.send(ambiguous_locations, dest=0)
+
+        if comm_rank == 0:
+            author_by_gcc_df = pd.DataFrame(final_data, index=pd.Index(author_list, name="Authors:"),
+                                        columns=pd.Index(util.GCC_DICT.values(), name='GGC:'))
+            
+            author_by_gcc_df = author_by_gcc_df.groupby(level=0).sum()
 
 
-        # OUTPUT
-        # Return GCC by the number of tweets in descending order
-        print("==== GCCs by the number of tweets in descending order ====")
-        util.get_top_gcc_by_num_of_tweet(author_by_gcc_df)
+            print("--- Time to Process Data: %.3f seconds ---" % (time.time() - start_time))
 
-        print("==== Authors by the number of tweets in descending order ====")
-        util.get_top_author_by_num_of_tweet(author_by_gcc_df)
+            # OUTPUT
+            print("==== Authors by the number of all tweets (All Location) in descending order ====")
+            util.get_top_author_by_num_of_tweet(author_by_gcc_df)
+            author_by_gcc_df = author_by_gcc_df.drop('RURAL', axis=1)
 
-        print("==== Top Authors by the number of Locations ====")
-        util.get_top_author_by_num_of_gcc(author_by_gcc_df)
+            # # Return GCC by the number of tweets in descending order
+            # print("==== GCCs by the number of tweets in descending order ====")
+            # util.get_top_gcc_by_num_of_tweet(author_by_gcc_df)
 
-        print("==== Top 10 Ambiguous Locations ====")
-        util.print_top_n_in_dict(ambiguous_locations)
+            print("==== Authors by the number of tweets in GCCs in descending order ====")
+            util.get_top_author_by_num_of_tweet(author_by_gcc_df)
+
+            print("==== Top Authors by the number of Locations in descending order ====")
+            util.get_top_author_by_num_of_gcc(author_by_gcc_df)
+
+            print("==== Top 10 Ambiguous Locations ====")
+            util.print_top_n_in_dict(ambiguous_locations)
 
 
 if __name__ == '__main__':
