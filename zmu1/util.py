@@ -1,7 +1,7 @@
 import json
 import os
 import re
-from pandas import pd
+import pandas as pd
 
 AMBIGUOUS_REASON = "AMBIGUOUS"
 
