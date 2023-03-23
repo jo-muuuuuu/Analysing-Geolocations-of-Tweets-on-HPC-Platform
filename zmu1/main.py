@@ -18,7 +18,10 @@ def update_dict(id_places_dict, cur_author_id, code):
     """
 
     cur_list = id_places_dict.get(cur_author_id)
-    index = int(code[:1]) - 1
+    if code:
+        index = int(code[:1]) - 1  # One of GCCs
+    else:
+        index = 8 # Rural
     cur_list[index] = cur_list[index] + 1
 
 
@@ -35,13 +38,12 @@ def process_data(twitter_data_point, code_by_places, id_places_dict, ambiguous_l
     cur_author_id = twitter_data_point['data'].get("author_id")
 
     if cur_author_id not in id_places_dict.keys():
-        id_places_dict[cur_author_id] = [0] * 8
+        id_places_dict[cur_author_id] = [0] * 9
 
     t_place_name = twitter_data_point['includes'].get("places")[0].get("full_name").lower()
 
     code = util.get_gcc_code(t_place_name, code_by_places, ambiguous_locations)
-    if code:
-        update_dict(id_places_dict, cur_author_id, code)
+    update_dict(id_places_dict, cur_author_id, code)
             
 
 def main(data_path, location_path):

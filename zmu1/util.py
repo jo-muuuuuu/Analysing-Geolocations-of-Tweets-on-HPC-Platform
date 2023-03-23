@@ -16,7 +16,7 @@ STATE_ABB_DICT = {
 }
 
 GCC_DICT = {"sydney": "1gsyd", "melbourne": "2gmel", "brisbane": "3gbri", "adelaide": "4gade", "perth": "5gper",
-            "hobart": "6ghob", "darwin": "7gdar", "canberra": "8acte"}
+            "hobart": "6ghob", "darwin": "7gdar", "canberra": "8acte", "RURAL": "rural"}
 
 
 def process_location_file(location_path):
