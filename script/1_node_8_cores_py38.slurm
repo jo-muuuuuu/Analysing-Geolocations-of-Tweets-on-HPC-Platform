@@ -10,4 +10,4 @@ module load mpi4py/3.0.2-timed-pingpong
 
 source ~/venvs/venv-3.8.6/bin/activate
 
-mpirun python3 main.py --location /../../sal.json --data ../../smallTwitter.json
+mpirun python3 ../code/main.py --location /../../sal.json --data /../../smallTwitter.json
