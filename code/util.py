@@ -12,7 +12,8 @@ STATE_ABB_DICT = {
     "south australia": "sa",
     "western australia": "wa",
     "tasmania": "tas",
-    "northern territory": "nt"
+    "northern territory": "nt",
+    "australian capital territory": "act"
 }
 
 GCC_DICT = {"sydney": "1gsyd", "melbourne": "2gmel", "brisbane": "3gbri", "adelaide": "4gade", "perth": "5gper",
