@@ -4,7 +4,7 @@
 #SBATCH --ntasks-per-node=4
 #SBATCH --cpus-per-task=1
 #SBATCH --output=scenario_3.txt
-#SBATCH --time=0-00:30:00
+#SBATCH --time=0-02:30:00
 module load python/3.7.4
 module load gcccore/8.3.0
 module load mpi4py/3.0.2-timed-pingpong
