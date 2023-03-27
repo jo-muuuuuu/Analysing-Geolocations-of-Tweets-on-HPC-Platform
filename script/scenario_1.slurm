@@ -1,6 +1,7 @@
 #!/bin/bash
 #SBATCH --account=COMP90024
-#SBATCH --ntasks=1
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=1
 #SBATCH --output=scenario_1.txt
 #SBATCH --time=0-03:00:00
@@ -10,5 +11,7 @@ module load mpi4py/3.0.2-timed-pingpong
 
 source ~/venvs/venv-3.7.4/bin/activate
 
-mpirun python3 ../code/main.py --location /../../sal.json --data /../../bigTwitter.json
-
+for i in {1..10}
+do
+  mpirun python3 ../code/main.py --location /../../sal.json --data /../../bigTwitter.json
+done
