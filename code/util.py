@@ -198,7 +198,6 @@ def get_top_gcc_by_num_of_tweet(author_by_gcc_df, n=8):
     print(gcc_tweet_sum_sorted.to_string())
     
 
-
 def get_top_author_by_num_of_tweet(author_by_gcc_df, n=10):
     """
     Get a list of Authors with most numbers of twitters
@@ -215,7 +214,6 @@ def get_top_author_by_num_of_tweet(author_by_gcc_df, n=10):
     row_name = result.index.values.tolist()[n-1]
     result = result[result['Rank'] <= result.loc[row_name]['Rank']]
     print(result.to_string())
-
 
 
 def get_top_author_by_num_of_gcc(author_by_gcc_df, n=10):

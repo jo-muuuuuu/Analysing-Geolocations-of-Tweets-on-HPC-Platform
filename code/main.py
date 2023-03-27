@@ -25,7 +25,6 @@ def update_dict(id_places_dict, cur_author_id, code):
     cur_list[index] = cur_list[index] + 1
 
 
-
 def process_data(twitter_data_point, code_by_places, id_places_dict, ambiguous_locations: set):
     """
     Process a single twitter data
