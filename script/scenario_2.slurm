@@ -14,4 +14,5 @@ source ~/venvs/venv-3.7.4/bin/activate
 for i in {1..10}
 do
   mpirun python3 ../code/main.py --location /../../sal.json --data /../../bigTwitter.json
+  my-job-stats -a -n -s
 done
