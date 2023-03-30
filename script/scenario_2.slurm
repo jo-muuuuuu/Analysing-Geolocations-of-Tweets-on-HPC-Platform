@@ -1,8 +1,8 @@
 #!/bin/bash
 #SBATCH --account=COMP90024
 #SBATCH --nodes=1
-#SBATCH --ntasks-per-node=1
-#SBATCH --cpus-per-task=8
+#SBATCH --ntasks-per-node=8
+#SBATCH --cpus-per-task=1
 #SBATCH --output=scenario_2.txt
 #SBATCH --time=0-06:00:00
 module load python/3.7.4
