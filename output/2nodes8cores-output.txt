@@ -1,0 +1,933 @@
+2 Nodes 8 Cores
+
+[zmu1@spartan-login1 script]$ cat scenario_3.txt
+
+
+--- 538.977 seconds ---
+--- 539.006 seconds ---
+--- 539.037 seconds ---
+--- 539.063 seconds ---
+--- 563.158 seconds ---
+--- 575.102 seconds ---
+--- 577.316 seconds ---
+--- Time to Process Data: 577.812 seconds ---
+==== Authors by the number of all tweets (All Location) in descending order ====
+                       Sum  Rank
+Authors:
+1498063511204761601  68477   1.0
+1089023364973219840  28128   2.0
+826332877457481728   27718   3.0
+1250331934242123776  25350   4.0
+1423662808311287813  21034   5.0
+1183144981252280322  20765   6.0
+1270672820792508417  20503   7.0
+820431428835885059   20063   8.0
+778785859030003712   19403   9.0
+1104295492433764353  18781  10.0
+==== Authors by the number of tweets in GCCs in descending order ====
+                       Sum  Rank
+Authors:
+1498063511204761601  68477   1.0
+1089023364973219840  28128   2.0
+826332877457481728   27581   3.0
+1250331934242123776  25332   4.0
+1423662808311287813  21030   5.0
+1183144981252280322  20652   6.0
+820431428835885059   20063   7.0
+1270672820792508417  19801   8.0
+233782487            18180   9.0
+1104295492433764353  17193  10.0
+==== Top Authors by the number of Locations in descending order ====
+GGC:                 1gsyd  2gmel  3gbri  4gade  5gper  6ghob  7gdar  8acte  GCC_Count  Twitter_Count  Rank
+Authors:
+61220731               547    600    239    129     15     75     21    705          8           2331   1.0
+1429984556451389440     12   1878      6      2      7      4      1     13          8           1923   2.0
+702290904460169216     470    371    278    145    175     66     21     46          8           1572   3.0
+17285408              1044     60     40      3      7     11      4     23          8           1192   4.0
+340123805              325      8      2      1     90      1    140      3          8            570   5.0
+87188071               156    100     76     32     53     42      7     34          8            500   6.0
+774694926135222272     109     80     37     28     34     36     28     34          8            386   7.0
+254515782              148     39     31      7     42      3      4     97          8            371   8.0
+607969713              165     52     15     33      7     31     36      4          8            343   9.0
+30634725                46     25      5      4     16     13      4    165          8            278  10.0
+==== Top 10 Ambiguous Locations ====
+('australia', 21326)
+('western, south australia', 44)
+('bellfield, victoria', 34)
+('springfield, new south wales', 25)
+('hart, northern territory', 14)
+('springfield, victoria', 14)
+('balgo, western australia', 11)
+('cedar creek, queensland', 6)
+('mount archer, queensland', 5)
+('lansdowne, new south wales', 5)
+--- 579.767 seconds ---
+
+Job ID           : 45888216
+Cluster          : spartan
+User/Project     : zmu1/comp90024
+Nodes            : 2
+Wall-clock time  : 00:10:01 / 02:30:00
+
+Displaying overall resources usage from 2023-03-28 23:35:30 to 2023-03-28 23:45:31:
+
+NODE            CPU#        TOT%   ( USR   / SYS   / WIO   / IDLE  )
+
+spartan-bm007 :
+                CPU# 1    : 96.0   (  94.2 /   1.8 /   0.0 /   4.0 )
+                CPU# 2    : 92.2   (  90.2 /   1.9 /   0.0 /   7.8 )
+                CPU# 3    : 92.1   (  90.2 /   2.0 /   0.0 /   7.9 )
+                CPU# 4    : 94.6   (  92.5 /   2.1 /   0.0 /   5.4 )
+
+spartan-bm027 :
+                CPU# 5    : 92.4   (  90.7 /   1.6 /   0.0 /   7.6 )
+                CPU# 6    : 96.2   (  94.4 /   1.8 /   0.0 /   3.8 )
+                CPU# 7    : 96.2   (  94.5 /   1.7 /   0.0 /   3.8 )
+                CPU# 8    : 96.2   (  94.5 /   1.7 /   0.0 /   3.8 )
+
+
+Allocated CPUs            : 8
+  CPUs with usage <25%    : 0
+  CPUs with usage <50%    : 0
+  CPUs with usage >50%    : 8
+
+Memory used (RAM)         : 1.8%  [572MB of 32000MB]
+
+--------------------------------------------
+
+
+
+--- 534.124 seconds ---
+--- 579.410 seconds ---
+--- 579.440 seconds ---
+--- 579.476 seconds ---
+--- 585.896 seconds ---
+--- 597.945 seconds ---
+--- 600.644 seconds ---
+--- Time to Process Data: 601.148 seconds ---
+==== Authors by the number of all tweets (All Location) in descending order ====
+                       Sum  Rank
+Authors:
+1498063511204761601  68477   1.0
+1089023364973219840  28128   2.0
+826332877457481728   27718   3.0
+1250331934242123776  25350   4.0
+1423662808311287813  21034   5.0
+1183144981252280322  20765   6.0
+1270672820792508417  20503   7.0
+820431428835885059   20063   8.0
+778785859030003712   19403   9.0
+1104295492433764353  18781  10.0
+==== Authors by the number of tweets in GCCs in descending order ====
+                       Sum  Rank
+Authors:
+1498063511204761601  68477   1.0
+1089023364973219840  28128   2.0
+826332877457481728   27581   3.0
+1250331934242123776  25332   4.0
+1423662808311287813  21030   5.0
+1183144981252280322  20652   6.0
+820431428835885059   20063   7.0
+1270672820792508417  19801   8.0
+233782487            18180   9.0
+1104295492433764353  17193  10.0
+==== Top Authors by the number of Locations in descending order ====
+GGC:                 1gsyd  2gmel  3gbri  4gade  5gper  6ghob  7gdar  8acte  GCC_Count  Twitter_Count  Rank
+Authors:
+61220731               547    600    239    129     15     75     21    705          8           2331   1.0
+1429984556451389440     12   1878      6      2      7      4      1     13          8           1923   2.0
+702290904460169216     470    371    278    145    175     66     21     46          8           1572   3.0
+17285408              1044     60     40      3      7     11      4     23          8           1192   4.0
+340123805              325      8      2      1     90      1    140      3          8            570   5.0
+87188071               156    100     76     32     53     42      7     34          8            500   6.0
+774694926135222272     109     80     37     28     34     36     28     34          8            386   7.0
+254515782              148     39     31      7     42      3      4     97          8            371   8.0
+607969713              165     52     15     33      7     31     36      4          8            343   9.0
+30634725                46     25      5      4     16     13      4    165          8            278  10.0
+==== Top 10 Ambiguous Locations ====
+('australia', 21326)
+('western, south australia', 44)
+('bellfield, victoria', 34)
+('springfield, new south wales', 25)
+('hart, northern territory', 14)
+('springfield, victoria', 14)
+('balgo, western australia', 11)
+('cedar creek, queensland', 6)
+('mount archer, queensland', 5)
+('lansdowne, new south wales', 5)
+--- 603.067 seconds ---
+Job ID           : 45888216
+Cluster          : spartan
+User/Project     : zmu1/comp90024
+Nodes            : 2
+Wall-clock time  : 00:20:06 / 02:30:00
+
+Displaying overall resources usage from 2023-03-28 23:35:30 to 2023-03-28 23:55:36:
+
+NODE            CPU#        TOT%   ( USR   / SYS   / WIO   / IDLE  )
+
+spartan-bm007 :
+                CPU# 1    : 98.0   (  96.3 /   1.7 /   0.0 /   2.0 )
+                CPU# 2    : 90.7   (  88.9 /   1.8 /   0.0 /   9.3 )
+                CPU# 3    : 93.7   (  91.9 /   1.9 /   0.0 /   6.3 )
+                CPU# 4    : 94.9   (  92.9 /   2.0 /   0.0 /   5.1 )
+
+spartan-bm027 :
+                CPU# 5    : 94.5   (  92.8 /   1.7 /   0.0 /   5.5 )
+                CPU# 6    : 96.2   (  94.4 /   1.9 /   0.0 /   3.8 )
+                CPU# 7    : 97.4   (  95.5 /   1.9 /   0.0 /   2.6 )
+                CPU# 8    : 97.6   (  95.8 /   1.8 /   0.0 /   2.4 )
+
+
+Allocated CPUs            : 8
+  CPUs with usage <25%    : 0
+  CPUs with usage <50%    : 0
+  CPUs with usage >50%    : 8
+
+Memory used (RAM)         : 1.8%  [586MB of 32000MB]
+
+--------------------------------------------
+
+
+
+--- 525.931 seconds ---
+--- 552.420 seconds ---
+--- 552.492 seconds ---
+--- 552.500 seconds ---
+--- 552.541 seconds ---
+--- 586.517 seconds ---
+--- 587.471 seconds ---
+--- Time to Process Data: 587.955 seconds ---
+==== Authors by the number of all tweets (All Location) in descending order ====
+                       Sum  Rank
+Authors:
+1498063511204761601  68477   1.0
+1089023364973219840  28128   2.0
+826332877457481728   27718   3.0
+1250331934242123776  25350   4.0
+1423662808311287813  21034   5.0
+1183144981252280322  20765   6.0
+1270672820792508417  20503   7.0
+820431428835885059   20063   8.0
+778785859030003712   19403   9.0
+1104295492433764353  18781  10.0
+==== Authors by the number of tweets in GCCs in descending order ====
+                       Sum  Rank
+Authors:
+1498063511204761601  68477   1.0
+1089023364973219840  28128   2.0
+826332877457481728   27581   3.0
+1250331934242123776  25332   4.0
+1423662808311287813  21030   5.0
+1183144981252280322  20652   6.0
+820431428835885059   20063   7.0
+1270672820792508417  19801   8.0
+233782487            18180   9.0
+1104295492433764353  17193  10.0
+==== Top Authors by the number of Locations in descending order ====
+GGC:                 1gsyd  2gmel  3gbri  4gade  5gper  6ghob  7gdar  8acte  GCC_Count  Twitter_Count  Rank
+Authors:
+61220731               547    600    239    129     15     75     21    705          8           2331   1.0
+1429984556451389440     12   1878      6      2      7      4      1     13          8           1923   2.0
+702290904460169216     470    371    278    145    175     66     21     46          8           1572   3.0
+17285408              1044     60     40      3      7     11      4     23          8           1192   4.0
+340123805              325      8      2      1     90      1    140      3          8            570   5.0
+87188071               156    100     76     32     53     42      7     34          8            500   6.0
+774694926135222272     109     80     37     28     34     36     28     34          8            386   7.0
+254515782              148     39     31      7     42      3      4     97          8            371   8.0
+607969713              165     52     15     33      7     31     36      4          8            343   9.0
+30634725                46     25      5      4     16     13      4    165          8            278  10.0
+==== Top 10 Ambiguous Locations ====
+('australia', 21326)
+('western, south australia', 44)
+('bellfield, victoria', 34)
+('springfield, new south wales', 25)
+('hart, northern territory', 14)
+('springfield, victoria', 14)
+('balgo, western australia', 11)
+('cedar creek, queensland', 6)
+('mount archer, queensland', 5)
+('lansdowne, new south wales', 5)
+--- 589.867 seconds ---
+Job ID           : 45888216
+Cluster          : spartan
+User/Project     : zmu1/comp90024
+Nodes            : 2
+Wall-clock time  : 00:29:58 / 02:30:00
+
+Displaying overall resources usage from 2023-03-28 23:35:30 to 2023-03-29 00:05:28:
+
+NODE            CPU#        TOT%   ( USR   / SYS   / WIO   / IDLE  )
+
+spartan-bm007 :
+                CPU# 1    : 98.7   (  97.0 /   1.7 /   0.0 /   1.3 )
+                CPU# 2    : 90.0   (  88.3 /   1.8 /   0.0 /  10.0 )
+                CPU# 3    : 93.5   (  91.7 /   1.8 /   0.0 /   6.5 )
+                CPU# 4    : 94.3   (  92.4 /   1.9 /   0.0 /   5.7 )
+
+spartan-bm027 :
+                CPU# 5    : 94.7   (  93.1 /   1.7 /   0.0 /   5.3 )
+                CPU# 6    : 96.0   (  94.1 /   1.8 /   0.0 /   4.0 )
+                CPU# 7    : 97.7   (  95.8 /   1.9 /   0.0 /   2.3 )
+                CPU# 8    : 98.0   (  96.2 /   1.9 /   0.0 /   1.9 )
+
+
+Allocated CPUs            : 8
+  CPUs with usage <25%    : 0
+  CPUs with usage <50%    : 0
+  CPUs with usage >50%    : 8
+
+Memory used (RAM)         : 1.8%  [586MB of 32000MB]
+
+--------------------------------------------
+
+
+
+--- 529.066 seconds ---
+--- 530.713 seconds ---
+--- 530.732 seconds ---
+--- 530.771 seconds ---
+--- 535.402 seconds ---
+--- 572.196 seconds ---
+--- 572.228 seconds ---
+--- Time to Process Data: 572.727 seconds ---
+==== Authors by the number of all tweets (All Location) in descending order ====
+                       Sum  Rank
+Authors:
+1498063511204761601  68477   1.0
+1089023364973219840  28128   2.0
+826332877457481728   27718   3.0
+1250331934242123776  25350   4.0
+1423662808311287813  21034   5.0
+1183144981252280322  20765   6.0
+1270672820792508417  20503   7.0
+820431428835885059   20063   8.0
+778785859030003712   19403   9.0
+1104295492433764353  18781  10.0
+==== Authors by the number of tweets in GCCs in descending order ====
+                       Sum  Rank
+Authors:
+1498063511204761601  68477   1.0
+1089023364973219840  28128   2.0
+826332877457481728   27581   3.0
+1250331934242123776  25332   4.0
+1423662808311287813  21030   5.0
+1183144981252280322  20652   6.0
+820431428835885059   20063   7.0
+1270672820792508417  19801   8.0
+233782487            18180   9.0
+1104295492433764353  17193  10.0
+==== Top Authors by the number of Locations in descending order ====
+GGC:                 1gsyd  2gmel  3gbri  4gade  5gper  6ghob  7gdar  8acte  GCC_Count  Twitter_Count  Rank
+Authors:
+61220731               547    600    239    129     15     75     21    705          8           2331   1.0
+1429984556451389440     12   1878      6      2      7      4      1     13          8           1923   2.0
+702290904460169216     470    371    278    145    175     66     21     46          8           1572   3.0
+17285408              1044     60     40      3      7     11      4     23          8           1192   4.0
+340123805              325      8      2      1     90      1    140      3          8            570   5.0
+87188071               156    100     76     32     53     42      7     34          8            500   6.0
+774694926135222272     109     80     37     28     34     36     28     34          8            386   7.0
+254515782              148     39     31      7     42      3      4     97          8            371   8.0
+607969713              165     52     15     33      7     31     36      4          8            343   9.0
+30634725                46     25      5      4     16     13      4    165          8            278  10.0
+==== Top 10 Ambiguous Locations ====
+('australia', 21326)
+('western, south australia', 44)
+('bellfield, victoria', 34)
+('springfield, new south wales', 25)
+('hart, northern territory', 14)
+('springfield, victoria', 14)
+('balgo, western australia', 11)
+('cedar creek, queensland', 6)
+('mount archer, queensland', 5)
+('lansdowne, new south wales', 5)
+--- 574.659 seconds ---
+Job ID           : 45888216
+Cluster          : spartan
+User/Project     : zmu1/comp90024
+Nodes            : 2
+Wall-clock time  : 00:39:35 / 02:30:00
+
+Displaying overall resources usage from 2023-03-28 23:35:30 to 2023-03-29 00:15:05:
+
+NODE            CPU#        TOT%   ( USR   / SYS   / WIO   / IDLE  )
+
+spartan-bm007 :
+                CPU# 1    : 98.9   (  97.2 /   1.7 /   0.0 /   1.1 )
+                CPU# 2    : 90.4   (  88.6 /   1.8 /   0.0 /   9.6 )
+                CPU# 3    : 93.1   (  91.2 /   1.8 /   0.0 /   6.9 )
+                CPU# 4    : 93.7   (  91.7 /   1.9 /   0.0 /   6.3 )
+
+spartan-bm027 :
+                CPU# 5    : 94.0   (  92.4 /   1.6 /   0.0 /   6.0 )
+                CPU# 6    : 95.2   (  93.5 /   1.8 /   0.0 /   4.8 )
+                CPU# 7    : 98.0   (  96.1 /   1.8 /   0.0 /   2.0 )
+                CPU# 8    : 98.3   (  96.4 /   1.8 /   0.0 /   1.7 )
+
+
+Allocated CPUs            : 8
+  CPUs with usage <25%    : 0
+  CPUs with usage <50%    : 0
+  CPUs with usage >50%    : 8
+
+Memory used (RAM)         : 1.8%  [586MB of 32000MB]
+
+--------------------------------------------
+
+
+
+--- 535.350 seconds ---
+--- 535.380 seconds ---
+--- 535.403 seconds ---
+--- 535.403 seconds ---
+--- 535.460 seconds ---
+--- 535.482 seconds ---
+--- 535.506 seconds ---
+--- Time to Process Data: 536.011 seconds ---
+==== Authors by the number of all tweets (All Location) in descending order ====
+                       Sum  Rank
+Authors:
+1498063511204761601  68477   1.0
+1089023364973219840  28128   2.0
+826332877457481728   27718   3.0
+1250331934242123776  25350   4.0
+1423662808311287813  21034   5.0
+1183144981252280322  20765   6.0
+1270672820792508417  20503   7.0
+820431428835885059   20063   8.0
+778785859030003712   19403   9.0
+1104295492433764353  18781  10.0
+==== Authors by the number of tweets in GCCs in descending order ====
+                       Sum  Rank
+Authors:
+1498063511204761601  68477   1.0
+1089023364973219840  28128   2.0
+826332877457481728   27581   3.0
+1250331934242123776  25332   4.0
+1423662808311287813  21030   5.0
+1183144981252280322  20652   6.0
+820431428835885059   20063   7.0
+1270672820792508417  19801   8.0
+233782487            18180   9.0
+1104295492433764353  17193  10.0
+==== Top Authors by the number of Locations in descending order ====
+GGC:                 1gsyd  2gmel  3gbri  4gade  5gper  6ghob  7gdar  8acte  GCC_Count  Twitter_Count  Rank
+Authors:
+61220731               547    600    239    129     15     75     21    705          8           2331   1.0
+1429984556451389440     12   1878      6      2      7      4      1     13          8           1923   2.0
+702290904460169216     470    371    278    145    175     66     21     46          8           1572   3.0
+17285408              1044     60     40      3      7     11      4     23          8           1192   4.0
+340123805              325      8      2      1     90      1    140      3          8            570   5.0
+87188071               156    100     76     32     53     42      7     34          8            500   6.0
+774694926135222272     109     80     37     28     34     36     28     34          8            386   7.0
+254515782              148     39     31      7     42      3      4     97          8            371   8.0
+607969713              165     52     15     33      7     31     36      4          8            343   9.0
+30634725                46     25      5      4     16     13      4    165          8            278  10.0
+==== Top 10 Ambiguous Locations ====
+('australia', 21326)
+('western, south australia', 44)
+('bellfield, victoria', 34)
+('springfield, new south wales', 25)
+('hart, northern territory', 14)
+('springfield, victoria', 14)
+('balgo, western australia', 11)
+('cedar creek, queensland', 6)
+('mount archer, queensland', 5)
+('lansdowne, new south wales', 5)
+--- 537.939 seconds ---
+Job ID           : 45888216
+Cluster          : spartan
+User/Project     : zmu1/comp90024
+Nodes            : 2
+Wall-clock time  : 00:48:36 / 02:30:00
+
+Displaying overall resources usage from 2023-03-28 23:35:30 to 2023-03-29 00:24:06:
+
+NODE            CPU#        TOT%   ( USR   / SYS   / WIO   / IDLE  )
+
+spartan-bm007 :
+                CPU# 1    : 99.0   (  97.2 /   1.8 /   0.0 /   1.0 )
+                CPU# 2    : 91.3   (  89.5 /   1.9 /   0.0 /   8.7 )
+                CPU# 3    : 93.5   (  91.6 /   1.9 /   0.0 /   6.5 )
+                CPU# 4    : 94.0   (  92.0 /   1.9 /   0.0 /   6.0 )
+
+spartan-bm027 :
+                CPU# 5    : 94.5   (  92.9 /   1.6 /   0.0 /   5.5 )
+                CPU# 6    : 95.5   (  93.7 /   1.8 /   0.0 /   4.5 )
+                CPU# 7    : 98.3   (  96.5 /   1.8 /   0.0 /   1.7 )
+                CPU# 8    : 98.5   (  96.7 /   1.8 /   0.0 /   1.5 )
+
+
+Allocated CPUs            : 8
+  CPUs with usage <25%    : 0
+  CPUs with usage <50%    : 0
+  CPUs with usage >50%    : 8
+
+Memory used (RAM)         : 1.9%  [607MB of 32000MB]
+
+--------------------------------------------
+
+
+
+--- 529.853 seconds ---
+--- 529.880 seconds ---
+--- 529.902 seconds ---
+--- 529.938 seconds ---
+--- 529.928 seconds ---
+--- 529.983 seconds ---
+--- 530.008 seconds ---
+--- Time to Process Data: 530.458 seconds ---
+==== Authors by the number of all tweets (All Location) in descending order ====
+                       Sum  Rank
+Authors:
+1498063511204761601  68477   1.0
+1089023364973219840  28128   2.0
+826332877457481728   27718   3.0
+1250331934242123776  25350   4.0
+1423662808311287813  21034   5.0
+1183144981252280322  20765   6.0
+1270672820792508417  20503   7.0
+820431428835885059   20063   8.0
+778785859030003712   19403   9.0
+1104295492433764353  18781  10.0
+==== Authors by the number of tweets in GCCs in descending order ====
+                       Sum  Rank
+Authors:
+1498063511204761601  68477   1.0
+1089023364973219840  28128   2.0
+826332877457481728   27581   3.0
+1250331934242123776  25332   4.0
+1423662808311287813  21030   5.0
+1183144981252280322  20652   6.0
+820431428835885059   20063   7.0
+1270672820792508417  19801   8.0
+233782487            18180   9.0
+1104295492433764353  17193  10.0
+==== Top Authors by the number of Locations in descending order ====
+GGC:                 1gsyd  2gmel  3gbri  4gade  5gper  6ghob  7gdar  8acte  GCC_Count  Twitter_Count  Rank
+Authors:
+61220731               547    600    239    129     15     75     21    705          8           2331   1.0
+1429984556451389440     12   1878      6      2      7      4      1     13          8           1923   2.0
+702290904460169216     470    371    278    145    175     66     21     46          8           1572   3.0
+17285408              1044     60     40      3      7     11      4     23          8           1192   4.0
+340123805              325      8      2      1     90      1    140      3          8            570   5.0
+87188071               156    100     76     32     53     42      7     34          8            500   6.0
+774694926135222272     109     80     37     28     34     36     28     34          8            386   7.0
+254515782              148     39     31      7     42      3      4     97          8            371   8.0
+607969713              165     52     15     33      7     31     36      4          8            343   9.0
+30634725                46     25      5      4     16     13      4    165          8            278  10.0
+==== Top 10 Ambiguous Locations ====
+('australia', 21326)
+('western, south australia', 44)
+('bellfield, victoria', 34)
+('springfield, new south wales', 25)
+('hart, northern territory', 14)
+('springfield, victoria', 14)
+('balgo, western australia', 11)
+('cedar creek, queensland', 6)
+('mount archer, queensland', 5)
+('lansdowne, new south wales', 5)
+--- 532.341 seconds ---
+Job ID           : 45888216
+Cluster          : spartan
+User/Project     : zmu1/comp90024
+Nodes            : 2
+Wall-clock time  : 00:57:31 / 02:30:00
+
+Displaying overall resources usage from 2023-03-28 23:35:30 to 2023-03-29 00:33:01:
+
+NODE            CPU#        TOT%   ( USR   / SYS   / WIO   / IDLE  )
+
+spartan-bm007 :
+                CPU# 1    : 99.1   (  97.2 /   1.8 /   0.0 /   0.9 )
+                CPU# 2    : 92.5   (  90.6 /   1.9 /   0.0 /   7.5 )
+                CPU# 3    : 94.3   (  92.4 /   1.9 /   0.0 /   5.7 )
+                CPU# 4    : 94.7   (  92.8 /   1.9 /   0.0 /   5.3 )
+
+spartan-bm027 :
+                CPU# 5    : 95.2   (  93.6 /   1.6 /   0.0 /   4.8 )
+                CPU# 6    : 96.1   (  94.3 /   1.7 /   0.0 /   3.9 )
+                CPU# 7    : 98.4   (  96.7 /   1.8 /   0.0 /   1.6 )
+                CPU# 8    : 98.6   (  96.8 /   1.8 /   0.0 /   1.4 )
+
+
+Allocated CPUs            : 8
+  CPUs with usage <25%    : 0
+  CPUs with usage <50%    : 0
+  CPUs with usage >50%    : 8
+
+Memory used (RAM)         : 1.9%  [607MB of 32000MB]
+
+--------------------------------------------
+
+
+
+--- 529.357 seconds ---
+--- 531.762 seconds ---
+--- 531.797 seconds ---
+--- 531.819 seconds ---
+--- 531.811 seconds ---
+--- 531.866 seconds ---
+--- 531.888 seconds ---
+--- Time to Process Data: 532.369 seconds ---
+==== Authors by the number of all tweets (All Location) in descending order ====
+                       Sum  Rank
+Authors:
+1498063511204761601  68477   1.0
+1089023364973219840  28128   2.0
+826332877457481728   27718   3.0
+1250331934242123776  25350   4.0
+1423662808311287813  21034   5.0
+1183144981252280322  20765   6.0
+1270672820792508417  20503   7.0
+820431428835885059   20063   8.0
+778785859030003712   19403   9.0
+1104295492433764353  18781  10.0
+==== Authors by the number of tweets in GCCs in descending order ====
+                       Sum  Rank
+Authors:
+1498063511204761601  68477   1.0
+1089023364973219840  28128   2.0
+826332877457481728   27581   3.0
+1250331934242123776  25332   4.0
+1423662808311287813  21030   5.0
+1183144981252280322  20652   6.0
+820431428835885059   20063   7.0
+1270672820792508417  19801   8.0
+233782487            18180   9.0
+1104295492433764353  17193  10.0
+==== Top Authors by the number of Locations in descending order ====
+GGC:                 1gsyd  2gmel  3gbri  4gade  5gper  6ghob  7gdar  8acte  GCC_Count  Twitter_Count  Rank
+Authors:
+61220731               547    600    239    129     15     75     21    705          8           2331   1.0
+1429984556451389440     12   1878      6      2      7      4      1     13          8           1923   2.0
+702290904460169216     470    371    278    145    175     66     21     46          8           1572   3.0
+17285408              1044     60     40      3      7     11      4     23          8           1192   4.0
+340123805              325      8      2      1     90      1    140      3          8            570   5.0
+87188071               156    100     76     32     53     42      7     34          8            500   6.0
+774694926135222272     109     80     37     28     34     36     28     34          8            386   7.0
+254515782              148     39     31      7     42      3      4     97          8            371   8.0
+607969713              165     52     15     33      7     31     36      4          8            343   9.0
+30634725                46     25      5      4     16     13      4    165          8            278  10.0
+==== Top 10 Ambiguous Locations ====
+('australia', 21326)
+('western, south australia', 44)
+('bellfield, victoria', 34)
+('springfield, new south wales', 25)
+('hart, northern territory', 14)
+('springfield, victoria', 14)
+('balgo, western australia', 11)
+('cedar creek, queensland', 6)
+('mount archer, queensland', 5)
+('lansdowne, new south wales', 5)
+--- 534.300 seconds ---
+Job ID           : 45888216
+Cluster          : spartan
+User/Project     : zmu1/comp90024
+Nodes            : 2
+Wall-clock time  : 01:06:28 / 02:30:00
+
+Displaying overall resources usage from 2023-03-28 23:35:30 to 2023-03-29 00:41:58:
+
+NODE            CPU#        TOT%   ( USR   / SYS   / WIO   / IDLE  )
+
+spartan-bm007 :
+                CPU# 1    : 99.2   (  97.3 /   1.8 /   0.0 /   0.8 )
+                CPU# 2    : 93.4   (  91.6 /   1.9 /   0.0 /   6.6 )
+                CPU# 3    : 95.0   (  93.1 /   1.9 /   0.0 /   5.0 )
+                CPU# 4    : 95.4   (  93.5 /   1.9 /   0.0 /   4.6 )
+
+spartan-bm027 :
+                CPU# 5    : 95.7   (  94.1 /   1.6 /   0.0 /   4.3 )
+                CPU# 6    : 96.4   (  94.7 /   1.7 /   0.0 /   3.6 )
+                CPU# 7    : 98.5   (  96.7 /   1.8 /   0.0 /   1.5 )
+                CPU# 8    : 98.6   (  96.9 /   1.8 /   0.0 /   1.4 )
+
+
+Allocated CPUs            : 8
+  CPUs with usage <25%    : 0
+  CPUs with usage <50%    : 0
+  CPUs with usage >50%    : 8
+
+Memory used (RAM)         : 1.9%  [607MB of 32000MB]
+
+--------------------------------------------
+
+
+
+--- 538.900 seconds ---
+--- 538.937 seconds ---
+--- 538.962 seconds ---
+--- 538.991 seconds ---
+--- 539.021 seconds ---
+--- 539.043 seconds ---
+--- 539.067 seconds ---
+--- Time to Process Data: 539.550 seconds ---
+==== Authors by the number of all tweets (All Location) in descending order ====
+                       Sum  Rank
+Authors:
+1498063511204761601  68477   1.0
+1089023364973219840  28128   2.0
+826332877457481728   27718   3.0
+1250331934242123776  25350   4.0
+1423662808311287813  21034   5.0
+1183144981252280322  20765   6.0
+1270672820792508417  20503   7.0
+820431428835885059   20063   8.0
+778785859030003712   19403   9.0
+1104295492433764353  18781  10.0
+==== Authors by the number of tweets in GCCs in descending order ====
+                       Sum  Rank
+Authors:
+1498063511204761601  68477   1.0
+1089023364973219840  28128   2.0
+826332877457481728   27581   3.0
+1250331934242123776  25332   4.0
+1423662808311287813  21030   5.0
+1183144981252280322  20652   6.0
+820431428835885059   20063   7.0
+1270672820792508417  19801   8.0
+233782487            18180   9.0
+1104295492433764353  17193  10.0
+==== Top Authors by the number of Locations in descending order ====
+GGC:                 1gsyd  2gmel  3gbri  4gade  5gper  6ghob  7gdar  8acte  GCC_Count  Twitter_Count  Rank
+Authors:
+61220731               547    600    239    129     15     75     21    705          8           2331   1.0
+1429984556451389440     12   1878      6      2      7      4      1     13          8           1923   2.0
+702290904460169216     470    371    278    145    175     66     21     46          8           1572   3.0
+17285408              1044     60     40      3      7     11      4     23          8           1192   4.0
+340123805              325      8      2      1     90      1    140      3          8            570   5.0
+87188071               156    100     76     32     53     42      7     34          8            500   6.0
+774694926135222272     109     80     37     28     34     36     28     34          8            386   7.0
+254515782              148     39     31      7     42      3      4     97          8            371   8.0
+607969713              165     52     15     33      7     31     36      4          8            343   9.0
+30634725                46     25      5      4     16     13      4    165          8            278  10.0
+==== Top 10 Ambiguous Locations ====
+('australia', 21326)
+('western, south australia', 44)
+('bellfield, victoria', 34)
+('springfield, new south wales', 25)
+('hart, northern territory', 14)
+('springfield, victoria', 14)
+('balgo, western australia', 11)
+('cedar creek, queensland', 6)
+('mount archer, queensland', 5)
+('lansdowne, new south wales', 5)
+--- 541.493 seconds ---
+Job ID           : 45888216
+Cluster          : spartan
+User/Project     : zmu1/comp90024
+Nodes            : 2
+Wall-clock time  : 01:15:32 / 02:30:00
+
+Displaying overall resources usage from 2023-03-28 23:35:30 to 2023-03-29 00:51:02:
+
+NODE            CPU#        TOT%   ( USR   / SYS   / WIO   / IDLE  )
+
+spartan-bm007 :
+                CPU# 1    : 99.3   (  97.4 /   1.8 /   0.0 /   0.7 )
+                CPU# 2    : 94.2   (  92.3 /   1.9 /   0.0 /   5.8 )
+                CPU# 3    : 95.6   (  93.7 /   1.9 /   0.0 /   4.4 )
+                CPU# 4    : 95.9   (  94.0 /   1.9 /   0.0 /   4.1 )
+
+spartan-bm027 :
+                CPU# 5    : 96.1   (  94.5 /   1.6 /   0.0 /   3.9 )
+                CPU# 6    : 96.7   (  95.0 /   1.7 /   0.0 /   3.3 )
+                CPU# 7    : 98.5   (  96.8 /   1.8 /   0.0 /   1.5 )
+                CPU# 8    : 98.7   (  96.9 /   1.8 /   0.0 /   1.3 )
+
+
+Allocated CPUs            : 8
+  CPUs with usage <25%    : 0
+  CPUs with usage <50%    : 0
+  CPUs with usage >50%    : 8
+
+Memory used (RAM)         : 2.1%  [687MB of 32000MB]
+
+--------------------------------------------
+
+
+
+--- 527.425 seconds ---
+--- 530.983 seconds ---
+--- 531.008 seconds ---
+--- 531.045 seconds ---
+--- 531.064 seconds ---
+--- 531.088 seconds ---
+--- 531.114 seconds ---
+--- Time to Process Data: 531.554 seconds ---
+==== Authors by the number of all tweets (All Location) in descending order ====
+                       Sum  Rank
+Authors:
+1498063511204761601  68477   1.0
+1089023364973219840  28128   2.0
+826332877457481728   27718   3.0
+1250331934242123776  25350   4.0
+1423662808311287813  21034   5.0
+1183144981252280322  20765   6.0
+1270672820792508417  20503   7.0
+820431428835885059   20063   8.0
+778785859030003712   19403   9.0
+1104295492433764353  18781  10.0
+==== Authors by the number of tweets in GCCs in descending order ====
+                       Sum  Rank
+Authors:
+1498063511204761601  68477   1.0
+1089023364973219840  28128   2.0
+826332877457481728   27581   3.0
+1250331934242123776  25332   4.0
+1423662808311287813  21030   5.0
+1183144981252280322  20652   6.0
+820431428835885059   20063   7.0
+1270672820792508417  19801   8.0
+233782487            18180   9.0
+1104295492433764353  17193  10.0
+==== Top Authors by the number of Locations in descending order ====
+GGC:                 1gsyd  2gmel  3gbri  4gade  5gper  6ghob  7gdar  8acte  GCC_Count  Twitter_Count  Rank
+Authors:
+61220731               547    600    239    129     15     75     21    705          8           2331   1.0
+1429984556451389440     12   1878      6      2      7      4      1     13          8           1923   2.0
+702290904460169216     470    371    278    145    175     66     21     46          8           1572   3.0
+17285408              1044     60     40      3      7     11      4     23          8           1192   4.0
+340123805              325      8      2      1     90      1    140      3          8            570   5.0
+87188071               156    100     76     32     53     42      7     34          8            500   6.0
+774694926135222272     109     80     37     28     34     36     28     34          8            386   7.0
+254515782              148     39     31      7     42      3      4     97          8            371   8.0
+607969713              165     52     15     33      7     31     36      4          8            343   9.0
+30634725                46     25      5      4     16     13      4    165          8            278  10.0
+==== Top 10 Ambiguous Locations ====
+('australia', 21326)
+('western, south australia', 44)
+('bellfield, victoria', 34)
+('springfield, new south wales', 25)
+('hart, northern territory', 14)
+('springfield, victoria', 14)
+('balgo, western australia', 11)
+('cedar creek, queensland', 6)
+('mount archer, queensland', 5)
+('lansdowne, new south wales', 5)
+--- 533.458 seconds ---
+Job ID           : 45888216
+Cluster          : spartan
+User/Project     : zmu1/comp90024
+Nodes            : 2
+Wall-clock time  : 01:24:28 / 02:30:00
+
+Displaying overall resources usage from 2023-03-28 23:35:30 to 2023-03-29 00:59:58:
+
+NODE            CPU#        TOT%   ( USR   / SYS   / WIO   / IDLE  )
+
+spartan-bm007 :
+                CPU# 1    : 99.3   (  97.4 /   1.9 /   0.0 /   0.7 )
+                CPU# 2    : 94.7   (  92.8 /   1.9 /   0.0 /   5.3 )
+                CPU# 3    : 96.0   (  94.0 /   1.9 /   0.0 /   4.0 )
+                CPU# 4    : 96.3   (  94.3 /   1.9 /   0.0 /   3.7 )
+
+spartan-bm027 :
+                CPU# 5    : 96.4   (  94.8 /   1.6 /   0.0 /   3.6 )
+                CPU# 6    : 97.0   (  95.2 /   1.7 /   0.0 /   3.0 )
+                CPU# 7    : 98.6   (  96.8 /   1.8 /   0.0 /   1.4 )
+                CPU# 8    : 98.7   (  97.0 /   1.8 /   0.0 /   1.3 )
+
+
+Allocated CPUs            : 8
+  CPUs with usage <25%    : 0
+  CPUs with usage <50%    : 0
+  CPUs with usage >50%    : 8
+
+Memory used (RAM)         : 2.1%  [687MB of 32000MB]
+
+--------------------------------------------
+
+
+
+--- 519.270 seconds ---
+--- 530.944 seconds ---
+--- 530.975 seconds ---
+--- 530.998 seconds ---
+--- 530.998 seconds ---
+--- 531.043 seconds ---
+--- 532.445 seconds ---
+--- Time to Process Data: 532.927 seconds ---
+==== Authors by the number of all tweets (All Location) in descending order ====
+                       Sum  Rank
+Authors:
+1498063511204761601  68477   1.0
+1089023364973219840  28128   2.0
+826332877457481728   27718   3.0
+1250331934242123776  25350   4.0
+1423662808311287813  21034   5.0
+1183144981252280322  20765   6.0
+1270672820792508417  20503   7.0
+820431428835885059   20063   8.0
+778785859030003712   19403   9.0
+1104295492433764353  18781  10.0
+==== Authors by the number of tweets in GCCs in descending order ====
+                       Sum  Rank
+Authors:
+1498063511204761601  68477   1.0
+1089023364973219840  28128   2.0
+826332877457481728   27581   3.0
+1250331934242123776  25332   4.0
+1423662808311287813  21030   5.0
+1183144981252280322  20652   6.0
+820431428835885059   20063   7.0
+1270672820792508417  19801   8.0
+233782487            18180   9.0
+1104295492433764353  17193  10.0
+==== Top Authors by the number of Locations in descending order ====
+GGC:                 1gsyd  2gmel  3gbri  4gade  5gper  6ghob  7gdar  8acte  GCC_Count  Twitter_Count  Rank
+Authors:
+61220731               547    600    239    129     15     75     21    705          8           2331   1.0
+1429984556451389440     12   1878      6      2      7      4      1     13          8           1923   2.0
+702290904460169216     470    371    278    145    175     66     21     46          8           1572   3.0
+17285408              1044     60     40      3      7     11      4     23          8           1192   4.0
+340123805              325      8      2      1     90      1    140      3          8            570   5.0
+87188071               156    100     76     32     53     42      7     34          8            500   6.0
+774694926135222272     109     80     37     28     34     36     28     34          8            386   7.0
+254515782              148     39     31      7     42      3      4     97          8            371   8.0
+607969713              165     52     15     33      7     31     36      4          8            343   9.0
+30634725                46     25      5      4     16     13      4    165          8            278  10.0
+==== Top 10 Ambiguous Locations ====
+('australia', 21326)
+('western, south australia', 44)
+('bellfield, victoria', 34)
+('springfield, new south wales', 25)
+('hart, northern territory', 14)
+('springfield, victoria', 14)
+('balgo, western australia', 11)
+('cedar creek, queensland', 6)
+('mount archer, queensland', 5)
+('lansdowne, new south wales', 5)
+--- 534.818 seconds ---
+Job ID           : 45888216
+Cluster          : spartan
+User/Project     : zmu1/comp90024
+Nodes            : 2
+Wall-clock time  : 01:33:25 / 02:30:00
+
+Displaying overall resources usage from 2023-03-28 23:35:30 to 2023-03-29 01:08:55:
+
+NODE            CPU#        TOT%   ( USR   / SYS   / WIO   / IDLE  )
+
+spartan-bm007 :
+                CPU# 1    : 99.3   (  97.5 /   1.9 /   0.0 /   0.7 )
+                CPU# 2    : 95.1   (  93.2 /   1.9 /   0.0 /   4.9 )
+                CPU# 3    : 96.2   (  94.3 /   1.9 /   0.0 /   3.8 )
+                CPU# 4    : 96.5   (  94.6 /   1.9 /   0.0 /   3.5 )
+
+spartan-bm027 :
+                CPU# 5    : 96.7   (  95.1 /   1.6 /   0.0 /   3.3 )
+                CPU# 6    : 97.2   (  95.5 /   1.7 /   0.0 /   2.8 )
+                CPU# 7    : 98.7   (  97.0 /   1.8 /   0.0 /   1.3 )
+                CPU# 8    : 98.8   (  97.1 /   1.7 /   0.0 /   1.2 )
+
+
+Allocated CPUs            : 8
+  CPUs with usage <25%    : 0
+  CPUs with usage <50%    : 0
+  CPUs with usage >50%    : 8
+
+Memory used (RAM)         : 2.1%  [687MB of 32000MB]
+
+--------------------------------------------

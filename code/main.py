@@ -69,7 +69,6 @@ def main(data_path, location_path):
         twitter = ijson.items(twitter_file, 'item')
 
         # MPI PROCESS
-        # TODO: implement MPI logic
         # We can get the index of the current json data point   - index
         # we have the rank of the current processor   -  comm_rank
         # we have the number of processors   -    comm_size
