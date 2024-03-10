@@ -1,3 +1,6 @@
+# COMP90024 Assignment 1 - Social Media Analytics
+
+## Introduction
 The objective of this project is to deploy and execute an application in parallel to the University
 of Melbourne HPC facility, SPARTAN, for the analysis of metrics associated with tweets and
 their geolocations. The project will begin by establishing a baseline through the execution of
@@ -7,3 +10,11 @@ found by the application and detail the implementation of the parallelization lo
 using the MPI for Python (mpi4py) package. Furthermore, the report will briefly discuss how
 the application can be invoked and analyze the results obtained from different configuration
 setups.
+
+
+## Team 
+| Name       	| Student ID 	| Email                          	|
+|------------	|------------	|--------------------------------	|
+| Zeyang Xue  | 1396314   	| zexue@student.unimelb.edu.au 	|
+| Zicheng Mu 	| 1261665    	| zmu1@student.unimelb.edu.au    	|
+
