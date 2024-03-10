@@ -11,6 +11,9 @@ using the MPI for Python (mpi4py) package. Furthermore, the report will briefly 
 the application can be invoked and analyze the results obtained from different configuration
 setups.
 
+## Spartan
+
+## Parallel Computing - MPI4PY
 
 ## Team 
 | Name       	| Student ID 	| Email                          	|
@@ -18,3 +21,10 @@ setups.
 | Zeyang Xue  | 1396314   	| zexue@student.unimelb.edu.au 	|
 | Zicheng Mu 	| 1261665    	| zmu1@student.unimelb.edu.au    	|
 
+## Dataset
+The datasets used in this assignment were obtained from Twitter (with official permission) and contain information that can be utilized for various research purposes.
+
+The image below displays the JSON structure of a tweet, with some less important fields omitted for clarity.
+![tweet-JSON-structure](https://github.com/jo-muuuuuu/Twitter-Analysis-on-HPC-Platform/assets/142861960/b2535802-1150-47d8-bfc8-e7d37de74846)
+
+## Output
